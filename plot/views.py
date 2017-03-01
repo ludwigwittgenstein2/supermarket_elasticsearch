@@ -8,7 +8,7 @@ from graphos.sources.simple import SimpleDataSource
 from graphos.renderers.gchart import LineChart
 
 
-def plot(request):
+def plot_income(request):
 
     query_json = {
 
@@ -35,7 +35,6 @@ def plot(request):
 
     data = []
 
-    print res
     for _count in res['aggregations']['MARITAL_STATUS_CODE']['buckets'][0]['ln']['buckets']:
         data.append([_count['key'], _count['doc_count']])
 
