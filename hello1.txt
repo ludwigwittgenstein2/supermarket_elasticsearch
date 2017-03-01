@@ -1,0 +1,5 @@
+This is VIM Editor, 
+I wonder how it works?
+It does seem to be fast, but I'm not familiar with the environment
+echo "hello world"
+

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+{{ chart.as_html }}
+-->
+
+<!-- Char JS <script src="http://yui.yahooapis.com/3.10.0/build/yui/yui-min.js"></script>
+ -->
+
+<!-- Char JS -->
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+{{ chart0.as_html }}
+
+<b>{{ house1 }}</b>
+{{ chart1.as_html }}
+
+<b>{{ house2 }}</b>
+{{ chart2.as_html }}
+
+<p class="text-center">House Hold Key : {{ house3 }}</p>
+{{ chart3.as_html }}
+
+<b>{{ house4 }}</b>
+{{ chart4.as_html }}
+
+<b>{{ house5 }}</b>
+{{ chart5.as_html }}
+
+<b>{{ house6 }}</b>
+{{ chart6.as_html }}
+
+<b>{{ house7 }}</b>
+{{ chart7.as_html }}
+
+<b>{{ house8 }}</b>
+{{ chart8.as_html }}
+
+<b>{{ house9 }}</b>
+{{ chart9.as_html }}
+
+{% endblock %}

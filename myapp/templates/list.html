@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Segmentation{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'music/js/main.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+</head>
+<body>
+
+<!-- Chart JS -->
+
+
+<!-- End of Chart JS -->
+
+
+
+  <!-- This is the navigation barr -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <div class = "navbar-header">
+          <a href="#" class="navbar-brand">PRICE OPTIMIZATION</a
+          </div>
+          <!-- Menu Items -->
+          <div>
+            <ul class="nav navbar-nav">
+              <li ><a href="#"> About </a> </li>
+                <li class="active"><a href="#"> Upload </a> </li>
+                  <li><a href="/myapp/list_all"> Files Loaded </a> </li>
+                    <li><a href="/myapp/segment"> Create Segments </a> </li>
+
+                    <!-- drop drown menu -->
+                    <li class="dropdown">
+                      <a href = "#" class="dropdown-toggle" data-toggle="dropdown"> Profile <span class="caret"> </span>
+                        <ul class="dropdown-menu">
+                          <li><a href="#"> Upload </a> </li>
+                            <li><a href="/myapp/list_all"> Files Loaded </a> </li>
+                              <li><a href="/myapp/segment"> Create Segments </a> </li>
+                        </ul>
+                      </li>
+
+                      <!-- right alight -->
+                      <ul class = "nav navbar-nav navbar-right">
+                        <li><a href="#"> Logout </a> </li>
+
+                  </ul>
+                </ul>
+
+          </div>
+
+
+
+      <!-- Header four grids- xs sm md lg-->
+
+
+
+
+                <!-- List of uploaded documents -->
+                  <!-- Items -->
+
+{{ form.DocumentForm }}
+
+                <!--{% if documents %}
+                        {% for document in documents %}
+                <li>
+    <a href="{{ document.docfile.url }}">{{ document.docfile.name }}
+    </a></li>
+                        {% endfor %}
+
+                {% else %}
+                    <p>No documents.</p>
+                {% endif %}
+
+                <!-- Upload form. Note enctype attribute! -->
+                <form class="navbar-form navbar-left" action="{% url "list" %}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Upload">
+                    </div>
+                    <button type="submit" value="Upload" class="btn btn-default"/> Upload
+                  </button>
+                    {% csrf_token %}
+                    <p>{{ form.non_field_errors }}</p>
+
+                    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+
+                    <p>
+                        {{ form.docfile.errors }}
+                        {{ form.docfile }}
+
+                </form>
+
+</body>
+</html>

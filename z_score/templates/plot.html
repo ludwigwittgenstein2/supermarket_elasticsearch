@@ -1,0 +1,66 @@
+<html>
+<!--
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+{{ chart.as_html }}
+
+<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+-->
+<!--
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+<meta charset=utf-8 />
+
+{{ chart.as_html }}
+
+
+<b>{{ house1 }}</b>
+{{ chart1.as_html }}
+
+<b>{{ house2 }}</b>
+{{ chart2.as_html }}
+
+<b>{{ house3 }}</b>
+{{ chart3.as_html }}
+
+<b>{{ house4 }}</b>
+{{ chart4.as_html }}
+
+<b>{{ house5 }}</b>
+{{ chart5.as_html }}
+
+<b>{{ house6 }}</b>
+{{ chart6.as_html }}
+
+<b>{{ house7 }}</b>
+{{ chart7.as_html }}
+
+<b>{{ house8 }}</b>
+{{ chart8.as_html }}
+
+<b>{{ house9 }}</b>
+{{ chart9.as_html }}
+--->
+
+<head>
+    <!-- code to include the highcharts and jQuery libraries goes here -->
+    <!-- load_charts filter takes a comma-separated list of id's where -->
+    <!-- the charts need to be rendered to                             -->
+    {% load chartit %}
+    {{ weatherchart|load_charts:"container" }}
+</head>
+<body>
+  <h1> Django Plot IT </h1>
+    <div id='container'> Chart will be rendered here </div>
+</body>
+</html>
