@@ -74,8 +74,8 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'Segmentation.wsgi.application'
+print TEMPLATES
 
 
 # Database
@@ -178,7 +178,7 @@ try:
 except ImportError:
     pass
 
-#End of stuff for BOWER 
+#End of stuff for BOWER
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
