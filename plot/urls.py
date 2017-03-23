@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from .views import plot_income
+from .views import plot
 
 urlpatterns = [
-    url(r'^income$', plot_income, name='plot_income')
+    url(r'^$', plot, name='plot')
 ]

@@ -19,7 +19,7 @@ for product in products['aggregations']['PRODUCT_ID']['buckets']:
     value = product['SUM(SALES_VALUE)']['value']
     name_json = requests.post('http://localhost:9200/_sql',
                               data='select SUB_COMMODITY_DESC from products where PRODUCT_ID = ' + str(product_code)).json()
-    print name_json
+#   print name_json
     name = name_json['hits']['hits'][0]['_source']['SUB_COMMODITY_DESC']
 
     print name, quantity, value

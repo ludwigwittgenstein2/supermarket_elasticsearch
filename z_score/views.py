@@ -10,12 +10,14 @@ from chartit import PivotDataPool, PivotChart
 import simplejson
 import yaml
 import csv
-
+import json
 
 from django.shortcuts import render_to_response
 import random
 import datetime
 import time
+import requests
+from elasticsearch import Elasticsearch
 
 #with open('/Users/Rick/Desktop/sample_demographics.csv', 'r') as w:
 #    income_group = {}
@@ -85,7 +87,6 @@ def z_score(request):
             }
             }
     return render_to_response('plot.html', data)
-
 
 
 def sample(request):
@@ -161,6 +162,52 @@ def none(request):
 
     #Step 3: Send the chart object to the template.
     return render_to_response('plot.html', {'take_back': basic-scatter})
+
+
+
+def same_2(request):
+
+    print "Hello"
+
+    query_json = {
+        "aggregations": {
+            "MARITAL_STATUS_CODE": {
+                "terms": {
+                    "field": "MARITAL_STATUS_CODE",
+                    "size": 0
+                },
+                "aggregations": {
+                    "ln": {
+                        "terms": {
+                            "field": "INCOME_DESC",
+                            "size": 0
+                        }
+                    }
+                }
+            }
+        } }
+
+    print query_json
+
+    es = Elasticsearch(host='localhost',port=9200)
+#   res = es.search(index="demographics", body=json.dumps(query_json))
+    res = requests.post('http://localhost:9200/demographics/_search', data=json.dumps(query_json)).text
+#    res = json.loads(res)
+    print res
+
+    data = []
+
+    for _count in res['aggregations']['MARITAL_STATUS_CODE']['buckets'][0]['ln']['buckets']:
+        data.append([_count['key'], _count['doc_count']])
+
+    print data_source
+    data_source = SimpleDataSource(data= data)
+
+    chart = BarChart(data_source)
+    context = {'chart': chart}
+
+    return render(request, 'plot.html', context)
+
 
 """
 
