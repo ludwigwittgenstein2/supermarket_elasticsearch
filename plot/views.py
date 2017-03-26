@@ -51,4 +51,4 @@ def plot(request):
     chart = BarChart(data_source)
     context = {'chart': chart}
 
-    return render(request, 'plot.html', context)
+    return render(request, 'IncomeRange.html', context)

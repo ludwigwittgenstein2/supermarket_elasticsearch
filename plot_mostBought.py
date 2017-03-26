@@ -15,13 +15,38 @@ import matplotlib.path as path
 result = requests.post('http://localhost:9200/_sql',
                        data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY PRODUCT_ID LIMIT 50').text
 
-N = 51
-width = 0.35
 fig, ax = plt.subplots()
 
 result = json.loads(result)
-ind = np.arange(N)
-print result
+
+for bucket in result['aggregations']['PRODUCT_ID']['buckets']:
+     household_key = bucket['key']
+     SALES_VALUE = bucket['SUM(SALES_VALUE)']['value']
+
+     data = np.array(SALES_VALUE)
+     n, bins = np.histogram(data, len(household_key))
+     print n, bins
+
+     left = np.array(bins[:-1])
+     right = np.array(bins[1:])
+     bottom = np.zeros(len(left))
+     top = bottom + n
+
+     XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+
+# get the Path object
+    barpath = path.Path.make_compound_path_from_polys(XY)
+
+# make a patch out of it
+    patch = patches.PathPatch(barpath)
+    ax.add_patch(patch)
+
+# update the view limits
+    ax.set_xlim(left[0], right[-1])
+    ax.set_ylim(bottom.min(), top.max())
+
+    plt.show()
+
 # Product_ID, SALES_VALUE
 
 """
