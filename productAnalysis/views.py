@@ -50,7 +50,7 @@ def productAnalysis(request):
 
         count = count + 1
     print Quarter_list
-    return render(request, 'productAnalysis.html',context)
+    return render(request, 'topProduct.html',context)
 
 
 def topProduct(request):
