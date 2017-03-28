@@ -12,21 +12,28 @@ names = []
 values = []
 
 N = 10
+rank = 0
 
 for product in products['aggregations']['PRODUCT_ID']['buckets']:
     product_code = product['key']
     quantity = product['doc_count']
     value = product['SUM(SALES_VALUE)']['value']
     name_json = requests.post('http://localhost:9200/_sql',
-                              data='select SUB_COMMODITY_DESC from products where PRODUCT_ID = ' + str(product_code)).json()
+                              data='SELECT * FROM products WHERE PRODUCT_ID = ' + str(product_code)).json()
 #   print name_json
-    name = name_json['hits']['hits'][0]['_source']['SUB_COMMODITY_DESC']
+    if len(name_json['hits']['hits']):
+        rank += 1
+        name = name_json['hits']['hits'][0]['_source']
 
-    print name, quantity, value
+        names.append(name)
+        values.append(value)
 
-    names.append(name)
-    values.append(value)
+        print "name","Product_key", "quantity", "value", "Commodity_Name"
 
+
+        print rank, '\t', product_code, '\t', '\t',value, '\t', name['SUB_COMMODITY_DESC'], name['DEPARTMENT']
+
+"""
 ind = np.arange(N)
 print ind, 'np.arange(N)'
 width = 0.35
@@ -37,3 +44,4 @@ ax.set_xticklabels(names)
 ax.set_title("Top 10 Bought Products with Revenue")
 
 plt.show()
+"""

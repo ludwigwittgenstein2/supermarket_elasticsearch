@@ -70,6 +70,17 @@ def married(request):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
+    c = {
+        'u': 'r',  # unknown
+        'a': 'b',  # single
+        'b': 'g'  # Married
+    }
+
+    m = {
+        'u': 0,
+        'a': 1,
+        'b': 2}
+
     for bucket in result['aggregations']['MARITAL_STATUS_CODE']['buckets']:
         marrige = bucket['key']
         age_list = []
@@ -117,7 +128,7 @@ def married(request):
 def TopConsumers(request):
 
     products = requests.post('http://localhost:9200/_sql',
-                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 100 ').json()
+                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 300 ').json()
     # print 'name, quantity, value'
     response = []
     rank = 0
@@ -142,3 +153,35 @@ def TopConsumers(request):
 
     print json.dumps(response)
     return render(request, 'TopConsumers.html', {'response':response})
+
+
+def TopProducts(request):
+
+    products = requests.post(
+        'http://localhost:9200/_sql', data='SELECT sum(SALES_VALUE) FROM transactions group by PRODUCT_ID ORDER BY SUM(SALES_VALUE) DESC limit 100').json()
+
+    response = []
+    rank = 0
+
+    for product in products['aggregations']['PRODUCT_ID']['buckets']:
+        product_code = product['key']
+        quantity = product['doc_count']
+        value = product['SUM(SALES_VALUE)']['value']
+        name_json = requests.post('http://localhost:9200/_sql',
+                                  data='SELECT * FROM products WHERE PRODUCT_ID = ' + str(product_code)).json()
+    #   print name_json
+        if len(name_json['hits']['hits']):
+            rank += 1
+            name = name_json['hits']['hits'][0]['_source']
+
+            response.append({
+                'rank': rank,
+                'PRODUCT_ID': product_code,
+                'values': value,
+                'SUB_COMMODITY_DESC': name['SUB_COMMODITY_DESC'],
+                'DEPARTMENT': name['DEPARTMENT'],
+                'BRAND': name['BRAND']
+                })
+
+    print json.dumps(response)
+    return render(request, 'TopProducts.html', {'response':response})
