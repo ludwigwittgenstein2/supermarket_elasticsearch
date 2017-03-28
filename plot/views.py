@@ -11,6 +11,7 @@ import pylab
 import json
 import requests
 
+
 def plot(request):
 
     print "Hello"
@@ -31,11 +32,11 @@ def plot(request):
                     }
                 }
             }
-        } }
+        }}
 
     print query_json
 
-    es = Elasticsearch(host='localhost',port=9200)
+    es = Elasticsearch(host='localhost', port=9200)
     res = es.search(index="demographics", body=json.dumps(query_json))
 #    res = requests.post('http://localhost:9200/demographics/_search',data=json.dumps(query_json)).text
 #    res = json.loads(res)
@@ -46,14 +47,14 @@ def plot(request):
     for _count in res['aggregations']['MARITAL_STATUS_CODE']['buckets'][0]['ln']['buckets']:
         data.append([_count['key'], _count['doc_count']])
 
-
-    data_source = SimpleDataSource(data= data)
+    data_source = SimpleDataSource(data=data)
     print data_source
 
     chart = BarChart(data_source)
     context = {'chart': chart}
 
     return render(request, 'IncomeRange.html', context)
+
 
 def married(request):
 
@@ -68,7 +69,6 @@ def married(request):
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-
 
     for bucket in result['aggregations']['MARITAL_STATUS_CODE']['buckets']:
         marrige = bucket['key']
@@ -99,16 +99,16 @@ def married(request):
         ax.bar(np.array(age_list), np.array(
             count_list), m[marrige], color=c[marrige])
 
-
     ax.set_xlabel('Age')
     ax.set_ylabel('Count')
     ax.set_zlabel('Married')
-    ax.set_title(' Married people with being owner ( X : Income segment , Y : age , Z : Number of visits  )')
+    ax.set_title(
+        ' Married people with being owner ( X : Income segment , Y : age , Z : Number of visits  )')
 
-    #plt.show()
+    # plt.show()
 
     response = HttpResponse(content_type="image/png")
-     # create your image as usual, e.g. pylab.plot(...)
+    # create your image as usual, e.g. pylab.plot(...)
     pylab.savefig(response, format="png")
 
     return response
@@ -116,23 +116,29 @@ def married(request):
 
 def TopConsumers(request):
 
-    products = requests.post('http://localhost:9200/_sql', data = 'SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 160 ').json()
-    #print 'name, quantity, value'
-
+    products = requests.post('http://localhost:9200/_sql',
+                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 100 ').json()
+    # print 'name, quantity, value'
+    response = []
     rank = 0
     for product in products['aggregations']['household_key']['buckets']:
         household_key = product['key']
-        print 'rank, household_key, value spent, Married,   Age, Home Status, Household_Size'
 
         values = product['SUM(SALES_VALUE)']['value']
-        name_json = requests.post('http://localhost:9200/_sql', data='SELECT * FROM demographics WHERE household_key = "'+ str(household_key)+'"').json()
+        name_json = requests.post('http://localhost:9200/_sql',
+                                  data='SELECT * FROM demographics WHERE household_key = "' + str(household_key) + '"').json()
         if len(name_json['hits']['hits']):
             rank += 1
             name = name_json['hits']['hits'][0]['_source']
 
-            household_key_list.append(household_key)
+            response.append({
+                'rank': rank,
+                'household_key': household_key,
+                'values': values,
+                'married': name['MARITAL_STATUS_CODE'],
+                'age': name['AGE_DESC'],
+                'home': name['HOMEOWNER_DESC'],
+                'size': name['HOUSEHOLD_SIZE_DESC']})
 
-            print rank,'\t', household_key, '\t', '\t', values,'\t',name['MARITAL_STATUS_CODE'],'\t',name['AGE_DESC'],'\t', name['HOMEOWNER_DESC'],'\t',name['HOUSEHOLD_SIZE_DESC']
-
-
-    return response
+    print json.dumps(response)
+    return render(request, 'TopConsumers.html', {'response':response})
