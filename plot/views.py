@@ -185,3 +185,31 @@ def TopProducts(request):
 
     print json.dumps(response)
     return render(request, 'TopProducts.html', {'response':response})
+
+
+
+def Coupon(request):
+
+    coupon_redempt = requests.post('http://localhost:9200/_sql', data = 'SELECT COUPON_UPC, household_key FROM coupon_redempt LIMIT 2500').json()
+
+    response = []
+    rank = 0
+
+    for redeemed in coupon_redempt['hits']['hits']:
+        coupon_redempt_id = redeemed['_source']['COUPON_UPC']
+        print coupon_redempt_id
+        coupon_redempt_household = redeemed['_source']['household_key']
+
+        coupon_json = requests.post('http://localhost:9200/_sql', data = 'SELECT COUPON_UPC, PRODUCT_ID FROM coupon WHERE COUPON_UPC=' + str(coupon_redempt_id)).json()
+
+        if len(coupon_json['hits']['hits']):
+
+
+
+
+        response.append({
+        'household_key': coupon_redempt_household,
+        'coupon_redempt_id': coupon_redempt_id })
+
+    print json.dumps (response)
+    return render(request, 'Coupon.html', {'response':response})
