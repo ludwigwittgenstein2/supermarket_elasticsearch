@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Consumer Income</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Top Coupons Redeemed</h2>
+  <p>The following table shows Coupons Redemeed</p>
+  <div class="bg-faded">Information about products redeemed by consumers
+  <table class="table table-bordered table-hover">
+    <thead class="d-inline-block bg-black">
+
+      <tr>
+        <th> QUANTITY </th>
+        <th>RETAIL_DISC ID</th>
+        <th>SUB_COMMODITY_DESC</th>
+        <th>COMMODITY_DESC</th>
+        <th>SALES_VALUE </th>
+        <th> DAY </th>
+        <th>COUPON_MATCH_DISC ID</th>
+        <th>COUPON_DISC</th>
+        <th>BASKET_ID </th>
+        <th> STORE_ID </th>
+</span>
+      </tr>
+        </thead>
+        <tbody>
+
+    {% for record in response%}
+
+	<tr>
+        <td> {{record.QUANTITY}}</td>
+        <td>{{record.RETAIL_DISC}}</td>
+        <td>{{record.SUB_COMMODITY_DESC}}</td></font>
+        <td>{{record.COMMODITY_DESC}}</td>
+        <td>{{record.SALES_VALUE}}</td>
+        <td>{{record.DAY}}</td>
+        <td> {{record.COUPON_MATCH_DISC}}</td>
+        <td>{{record.COUPON_DISC}}</td>
+        <td>{{record.BASKET_ID}}</td></font>
+        <td>{{record.STORE_ID}}</td>
+
+
+
+
+
+
+
+
+
+
+
+
+    </tr>
+
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+</body>
+</html>

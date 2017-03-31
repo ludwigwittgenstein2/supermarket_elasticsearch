@@ -13,8 +13,9 @@
 <div class="container">
   <h2>Top Consumers of Supermarket</h2>
   <p>The following shows top purchased consumers of supermarket</p>
-  <table class="table table-striped">
-    <thead>
+  <div class="bg-faded">Information about products redeemed by consumers
+  <table class="table table-bordered table-hover">
+    <thead class="d-inline-block bg-black">
       <tr>
 
 
@@ -34,7 +35,7 @@
 
 	<tr>
         <td>{{record.rank}}</td>
-        <td>{{record.household_key}}</td>
+        <td><a href="/plot/consumers/{{record.household_key}}">{{record.household_key}}</a></td>
         <td>{{record.values}}</td>
         <td>{{record.married}}</td>
         <td>{{record.age}}</td>
