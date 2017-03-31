@@ -1,68 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Segmentation{% endblock %}</title>
-    {% load staticfiles %}
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'music/js/main.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<!-- Chart JS -->
-
-
-<!-- End of Chart JS -->
-
-
-
-  <!-- This is the navigation barr -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Logo -->
-        <div class = "navbar-header">
-          <a href="#" class="navbar-brand">PRICE OPTIMIZATION</a
-          </div>
-          <!-- Menu Items -->
-          <div>
-            <ul class="nav navbar-nav">
-              <li ><a href="#"> About </a> </li>
-                <li><a href="#"> Upload </a> </li>
-                  <li class="active"><a href="#"> File Loaded </a> </li>
-                    <li><a href="/myapp/segment"> Create Segments </a> </li>
-
-                    <!-- drop drown menu -->
-                    <li class="dropdown">
-                      <a href = "#" class="dropdown-toggle" data-toggle="dropdown"> Profile <span class="caret"> </span>
-                        <ul class="dropdown-menu">
-                          <li><a href="#"> Upload </a> </li>
-                            <li><a href="/myapp/list_all"> Files Loaded </a> </li>
-                              <li><a href="#"> Price Optimization </a> </li>
-                        </ul>
-                      </li>
-
-                      <!-- right alight -->
-                      <ul class = "nav navbar-nav navbar-right">
-                        <li><a href="#"> Logout </a> </li>
-
-                  </ul>
-                </ul>
-
-          </nav>
 
 
 
       <!-- Header four grids- xs sm md lg-->
 
 
-
-</div>
+{% block body %}
                 <!-- List of uploaded documents -->
                   <!-- Items -->
 
@@ -96,6 +40,4 @@
 
                 </form> -->
 
-</body>
-
-</html>
+{% endblock %}
