@@ -190,26 +190,31 @@ def TopProducts(request):
 
 def Coupon(request):
 
-    coupon_redempt = requests.post('http://localhost:9200/_sql', data = 'SELECT COUPON_UPC, household_key FROM coupon_redempt LIMIT 2500').json()
+    coupon_redempt = requests.post('http://localhost:9200/_sql', data = 'SELECT count(*) FROM master_data group by PRODUCT_ID, SUB_COMMODITY_DESC, COMMODITY_DESC').json()
 
     response = []
-    rank = 0
+    RANK = 0
 
-    for redeemed in coupon_redempt['hits']['hits']:
-        coupon_redempt_id = redeemed['_source']['COUPON_UPC']
-        print coupon_redempt_id
-        coupon_redempt_household = redeemed['_source']['household_key']
+    for redeemed in coupon_redempt['aggregations']['PRODUCT_ID']['buckets']:
+        if len(redeemed):
+            RANK += 1
+            for sub_buck in redeemed['SUB_COMMODITY_DESC']['buckets'][0]['COMMODITY_DESC']['buckets']:
 
-        coupon_json = requests.post('http://localhost:9200/_sql', data = 'SELECT COUPON_UPC, PRODUCT_ID FROM coupon WHERE COUPON_UPC=' + str(coupon_redempt_id)).json()
+                PRODUCT_ID = redeemed['key']
+                PRODUCT_NAME = redeemed['SUB_COMMODITY_DESC']['buckets'][0]['key']
+                PRODUCT_CATEGORY = sub_buck['key']
+                TIMES_RENEWED = sub_buck['doc_count']
 
-        if len(coupon_json['hits']['hits']):
 
 
 
 
         response.append({
-        'household_key': coupon_redempt_household,
-        'coupon_redempt_id': coupon_redempt_id })
+        'RANK': RANK,
+        'PRODUCT_ID': PRODUCT_ID,
+        'PRODUCT_NAME': PRODUCT_NAME ,
+        'PRODUCT_CATEGORY':PRODUCT_CATEGORY,
+        'TIMES_RENEWED': TIMES_RENEWED})
 
     print json.dumps (response)
     return render(request, 'Coupon.html', {'response':response})

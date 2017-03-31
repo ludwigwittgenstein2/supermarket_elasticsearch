@@ -9,28 +9,32 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
-  <h2>Coupons Redeemed</h2>
+  <h2>Top Coupons Redeemed</h2>
   <p>The following table shows Coupons Redemeed</p>
-  <table class="table table-striped">
-    <thead>
+  <div class="bg-faded">Nullam id dolor id nibh ultricies vehicula ut id elit.
+  <table class="table table-bordered table-hover">
+    <thead class="d-inline-block bg-black">
+
       <tr>
-
-
-        <th>Household Key</th>
-        <th>Coupon ID</th>
-
-
+        <th> RANK </th>
+        <th>PRODUCT ID</th>
+        <th>PRODUCT_NAME</th>
+        <th>PRODUCT_CATEGORY </th>
+        <th> TIMES_RENEWED </th>
+</span>
       </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
 
     {% for record in response%}
 
 	<tr>
-        <td>{{record.household_key}}</td>
-        <td>{{record.coupon_redempt_id}}</td>
+        <td> {{record.RANK}}</td>
+        <td>{{record.PRODUCT_ID}}</td>
+        <td>{{record.PRODUCT_NAME}}</td></font>
+        <td>{{record.PRODUCT_CATEGORY}}</td>
+        <td>{{record.TIMES_RENEWED}}</td>
 
     </tr>
 
@@ -38,6 +42,9 @@
     </tbody>
   </table>
 </div>
+
+
+
 
 </body>
 </html>
