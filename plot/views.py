@@ -226,7 +226,7 @@ def purchases(request, house_id):
         hit = hit['_source']
         product = requests.post(
             'http://localhost:9200/_sql',
-            data='select * from product where PRODUCT_ID = %s' % (hit.get('PRODUCT_ID'))
+            data='select * from products where PRODUCT_ID = %s' % (hit.get('PRODUCT_ID'))
             ).json()['hits']['hits'][0]['_source']
         hit.update(product)
         response.append({
