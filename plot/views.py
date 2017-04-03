@@ -201,8 +201,7 @@ def Coupon(request):
             for sub_buck in redeemed['SUB_COMMODITY_DESC']['buckets'][0]['COMMODITY_DESC']['buckets']:
 
                 PRODUCT_ID = redeemed['key']
-                PRODUCT_NAME = redeemed[
-                    'SUB_COMMODITY_DESC']['buckets'][0]['key']
+                PRODUCT_NAME = redeemed['SUB_COMMODITY_DESC']['buckets'][0]['key']
                 PRODUCT_CATEGORY = sub_buck['key']
                 TIMES_RENEWED = sub_buck['doc_count']
 
@@ -217,9 +216,10 @@ def Coupon(request):
 
 
 def purchases(request, house_id):
+    Total_SALES_VALUE = 0
     data = requests.post(
         'http://localhost:9200/_sql',
-        data='select * from transactions where household_key = %s' % (house_id)).json()
+        data='select * from transactions where household_key = %s limit 10000' % (house_id)).json()
 
     response = []
     for hit in data['hits']['hits']:
@@ -229,6 +229,10 @@ def purchases(request, house_id):
             data='select * from products where PRODUCT_ID = %s' % (hit.get('PRODUCT_ID'))
             ).json()['hits']['hits'][0]['_source']
         hit.update(product)
+
+        Total_SALES_VALUE += (hit.get('SALES_VALUE'))
+
+
         response.append({
             'QUANTITY': hit.get('QUANTITY'),
             'RETAIL_DISC': hit.get('RETAIL_DISC'),
@@ -240,6 +244,11 @@ def purchases(request, house_id):
             'COUPON_DISC': hit.get('COUPON_DISC'),
             'BASKET_ID': hit.get('BASKET_ID'),
             'STORE_ID': hit.get('STORE_ID'),
+            'TOTAL_SALES': Total_SALES_VALUE
         })
-
+    print Total_SALES_VALUE
     return render(request, 'purchases.html', {'response': response})
+
+def Supermarket_trend(request):
+
+    return render(request, 'SupermarketTrend.html')
