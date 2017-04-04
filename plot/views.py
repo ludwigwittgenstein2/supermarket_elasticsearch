@@ -53,6 +53,8 @@ def plot(request):
     chart = BarChart(data_source)
     context = {'chart': chart}
 
+    print context
+
     return render(request, 'IncomeRange.html', context)
 
 
@@ -142,6 +144,21 @@ def TopConsumers(request):
             rank += 1
             name = name_json['hits']['hits'][0]['_source']
 
+            trend = requests.post('http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions WHERE household_key =  "'+ str(household_key) +'" GROUP BY WEEK_NO ORDER BY WEEK_NO').json()
+            trend_weekly = trend['aggregations']
+            data_Trend = []
+            for week in trend_weekly['WEEK_NO']['buckets']:
+                week_no = week['key']
+                times_visited = week['COUNT(*)']['value']
+                data_Trend.append([int(week_no), times_visited])
+            print data_Trend
+
+            data_source = SimpleDataSource(data=data_Trend)
+
+            chart = LineChart(data_source)
+            context = {'chart': chart}
+            print context['chart']
+
             response.append({
                 'rank': rank,
                 'household_key': household_key,
@@ -149,9 +166,10 @@ def TopConsumers(request):
                 'married': name['MARITAL_STATUS_CODE'],
                 'age': name['AGE_DESC'],
                 'home': name['HOMEOWNER_DESC'],
-                'size': name['HOUSEHOLD_SIZE_DESC']})
+                'size': name['HOUSEHOLD_SIZE_DESC'],
+                'trend': context['chart']})
 
-    print json.dumps(response)
+    #print json.dumps(response)
     return render(request, 'TopConsumers.html', {'response': response})
 
 

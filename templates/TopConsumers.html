@@ -9,6 +9,18 @@
   <title>Consumer Income</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--Line 13-21, copied from Plot's template -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+  <meta charset=utf-8
+  <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,6 +43,7 @@
         <th>Age</th>
         <th>Home Status</th>
         <th>Size</th>
+        <th>Trends</th>
 
       </tr>
     </thead>
@@ -46,12 +59,17 @@
         <td>{{record.age}}</td>
         <td>{{record.home}}</td>
         <td>{{record.size}}</td>
+        <td>{{record.trend.as_html}}
+
+     </td>
     </tr>
+
 
     {%endfor%}
     </tbody>
   </table>
 </div>
+
 
 </body>
 </html>
