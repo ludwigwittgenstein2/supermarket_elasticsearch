@@ -3,10 +3,8 @@
 
 {% block body %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Consumer Income</title>
+
+  <title>Top Consumers</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,8 +22,23 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+
+    // Load the Visualization API library and the piechart library.
+    google.load('visualization', '1.0', {'packages':['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+       // ... draw the chart...
+  </script>
+  <script src="http://yui.yahooapis.com/3.10.0/build/yui/yui-min.js"></script>
+
+
+
+
+
+
 
 <div class="container">
   <h2>Top Consumers of Supermarket</h2>
@@ -43,7 +56,7 @@
         <th>Age</th>
         <th>Home Status</th>
         <th>Size</th>
-        <th>Trends</th>
+        <th>Weekly Visit Trend</th>
 
       </tr>
     </thead>
@@ -70,7 +83,4 @@
   </table>
 </div>
 
-
-</body>
-</html>
 {% endblock %}
