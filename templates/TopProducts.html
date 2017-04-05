@@ -29,6 +29,7 @@
         <th>Commodity </th>
         <th>Department</th>
         <th>Brand</th>
+        <th> Chart </th>
 
       </tr>
     </thead>
@@ -43,9 +44,10 @@
         <td>{{record.SUB_COMMODITY_DESC}}</td>
         <td>{{record.DEPARTMENT}}</td>
         <td>{{record.BRAND}}</td>
+        <td>{{record.trend.as_html}}
     </tr>
 
-  
+
 
     {%endfor%}
     </tbody>

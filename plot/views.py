@@ -5,6 +5,7 @@ from graphos.sources.simple import SimpleDataSource
 from graphos.renderers.morris import BarChart
 from graphos.renderers.morris import LineChart
 from graphos.renderers.morris import AreaChart
+from graphos.renderers.morris import DonutChart
 from elasticsearch import Elasticsearch
 from django.shortcuts import render
 from graphos.sources.simple import SimpleDataSource
@@ -193,7 +194,12 @@ def TopProducts(request):
     #   print name_json
         if len(name_json['hits']['hits']):
             rank += 1
+            a = 0
             name = name_json['hits']['hits'][0]['_source']
+            if name['SUB_COMMODITY_DESC'] == name['SUB_COMMODITY_DESC']:
+                print name['SUB_COMMODITY_DESC']
+
+
 
             response.append({
                 'rank': rank,
@@ -201,10 +207,10 @@ def TopProducts(request):
                 'values': value,
                 'SUB_COMMODITY_DESC': name['SUB_COMMODITY_DESC'],
                 'DEPARTMENT': name['DEPARTMENT'],
-                'BRAND': name['BRAND']
+                'BRAND': name['BRAND'],
             })
 
-    print json.dumps(response)
+    #print json.dumps(response)
     return render(request, 'TopProducts.html', {'response': response})
 
 
@@ -253,6 +259,9 @@ def purchases(request, house_id):
 
         Total_SALES_VALUE += (hit.get('SALES_VALUE'))
 
+        category_trend = [hit.get('COMMODITY_DESC')]
+
+
 
         response.append({
             'QUANTITY': hit.get('QUANTITY'),
@@ -267,7 +276,7 @@ def purchases(request, house_id):
             'STORE_ID': hit.get('STORE_ID'),
             'TOTAL_SALES': Total_SALES_VALUE
         })
-    print Total_SALES_VALUE
+    #print Total_SALES_VALUE
     return render(request, 'purchases.html', {'response': response})
 
 def Supermarket_trend(request):
