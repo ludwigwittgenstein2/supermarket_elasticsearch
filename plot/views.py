@@ -268,6 +268,27 @@ def purchases(request, house_id):
     Sizes = number.values()
     print Label, Sizes
 
+    xdata = ["Apple", "Apricot", "Avocado", "Banana", "Boysenberries", "Blueberries", "Dates", "Grapefruit", "Kiwi", "Lemon"]
+    ydata = [52, 48, 160, 94, 75, 71, 490, 82, 46, 17]
+    chartdata = {'x': Label[:5], 'y': Sizes[:5]}
+    charttype = "pieChart"
+    chartcontainer = 'piechart_container'
+
+
+
+    data = {
+        'charttype': charttype,
+        'chartdata': chartdata,
+        'chartcontainer': chartcontainer,
+        'extra': {
+            'x_is_date': True,
+            'x_axis_format': '',
+            'tag_script_js': True,
+            'jquery_on_ready': True,
+        },
+        'chart' : True,
+    }
+
 
     if hit.get('WEEK_NO') == hit.get('WEEK_NO'):
         WEEK_SALES_VALUE += hit.get('SALES_VALUE')
@@ -303,7 +324,16 @@ def purchases(request, house_id):
                 'trend': Chart#context['chart']
         })
     #print Total_SALES_VALUE
-    return render(request, 'purchases.html', {'response': response})
+    return render(request, 'purchases.html', {'response': response,'charttype': charttype,
+    'chartdata': chartdata,
+    'chartcontainer': chartcontainer,
+    'extra': {
+        'x_is_date': True,
+        'x_axis_format': '',
+        'tag_script_js': True,
+        'jquery_on_ready': True,
+    },
+    'chart' : True})
 
 def Supermarket_trend(request):
 

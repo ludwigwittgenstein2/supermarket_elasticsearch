@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  {% load nvd3_tags %}
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      {% include_chart_jscss %}
+      {% load_chart charttype chartdata chartcontainer extra %}
+
 </head>
 <body>
 
@@ -67,7 +78,7 @@
         <th>COUPON_DISC</th>
         <th>BASKET_ID </th>
         <th> STORE_ID </th>
-        <th>Weekly Trend </th>
+        <th>Basket Size</th>
 </span>
       </tr>
         </thead>
@@ -88,9 +99,13 @@
         <td>{{record.COUPON_DISC}}</td>
         <td>{{record.BASKET_ID}}</td></font>
         <td>{{record.STORE_ID}}</td>
-        <td>{{record.trend.as_html}}</td>
+        <td>  {% if chart%}
 
-this is purchases.html
+
+                                  {% include_container chartcontainer  %}
+                  {% endif %}</td>
+
+
 
 
 
@@ -106,6 +121,7 @@ this is purchases.html
     {%endfor%}
     </tbody>
   </table>
+
 </div>
 
 
