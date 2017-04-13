@@ -9,7 +9,7 @@ from graphos.renderers.morris import DonutChart
 from elasticsearch import Elasticsearch
 from django.shortcuts import render
 from graphos.sources.simple import SimpleDataSource
-
+import matplotlib.pyplot as plt
 
 import pylab
 import json
@@ -119,8 +119,7 @@ def married(request):
     ax.set_xlabel('Age')
     ax.set_ylabel('Count')
     ax.set_zlabel('Married')
-    ax.set_title(
-        ' Married people with being owner ( X : Income segment , Y : age , Z : Number of visits  )')
+    ax.set_title(' Married people with being owner ( X : Income segment , Y : age , Z : Number of visits  )')
 
     # plt.show()
 
@@ -134,7 +133,7 @@ def married(request):
 def TopConsumers(request):
 
     products = requests.post('http://localhost:9200/_sql',
-                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 50 ').json()
+                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 250 ').json()
     # print 'name, quantity, value'
     response = []
     rank = 0
@@ -162,12 +161,16 @@ def TopConsumers(request):
             chart = LineChart(data_source, height= 190, width=550, labels=['Week', 'Number'])
             context = {'chart': chart}
             print context['chart']
+            L = (name['INCOME_DESC'])
+            n = ''.join(i for i in L if i.isdigit())
+            print n
 
             response.append({
                 'rank': rank,
                 'household_key': household_key,
                 'values': values,
                 'married': name['MARITAL_STATUS_CODE'],
+                'Income': name['INCOME_DESC'],
                 'age': name['AGE_DESC'],
                 'home': name['HOMEOWNER_DESC'],
                 'size': name['HOUSEHOLD_SIZE_DESC'],
@@ -244,37 +247,60 @@ def Coupon(request):
 
 def purchases(request, house_id):
     Total_SALES_VALUE = 0
-    data = requests.post(
-        'http://localhost:9200/_sql',
-        data='select * from transactions where household_key = %s limit 10000' % (house_id)).json()
+    WEEK_SALES_VALUE = 0
+    Weekly_trend = []
+    number = {}
+    data = requests.post('http://localhost:9200/_sql',
+        data='SELECT * FROM transactions WHERE household_key = %s ORDER BY WEEK_NO limit 20' % (house_id)).json()
 
     response = []
     for hit in data['hits']['hits']:
         hit = hit['_source']
-        product = requests.post(
-            'http://localhost:9200/_sql',
-            data='select * from products where PRODUCT_ID = %s' % (hit.get('PRODUCT_ID'))
-            ).json()['hits']['hits'][0]['_source']
+        product = requests.post('http://localhost:9200/_sql',data='SELECT * FROM products WHERE PRODUCT_ID = %s' % (hit.get('PRODUCT_ID'))).json()['hits']['hits'][0]['_source']
         hit.update(product)
-
         Total_SALES_VALUE += (hit.get('SALES_VALUE'))
 
-        category_trend = [hit.get('COMMODITY_DESC')]
+        if hit['SUB_COMMODITY_DESC'] in product['SUB_COMMODITY_DESC']:
+            number[product['SUB_COMMODITY_DESC']] = int(hit['QUANTITY'])
+        else:
+            number[product['SUB_COMMODITY_DESC']] += int(hit['QUANTITY'])
+    Label = number.keys()
+    Sizes = number.values()
+    print Label, Sizes
 
 
+    if hit.get('WEEK_NO') == hit.get('WEEK_NO'):
+        WEEK_SALES_VALUE += hit.get('SALES_VALUE')
+        Weekly_trend = ([(int(hit.get('WEEK_NO')),(WEEK_SALES_VALUE))])
 
-        response.append({
+    data_source = SimpleDataSource(data=Weekly_trend)
+    fig1, ax1 = plt.subplots()
+    explode = (0, 0.1, 0, 0,0, 0.1, 0, 0,0, 0.1, 0, 0,0, 0.1, 0, 0,0,0,0)
+
+
+    ax1.pie(Sizes, labels=Label, explode=explode,autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    ax1.axis('equal')
+    Chart = HttpResponse(content_type="image/png")
+        # create your image as usual, e.g. pylab.plot(...)
+    pylab.savefig(Chart, format="png")
+        #chart = LineChart(data_source, height= 190, width=550, labels=['Week', 'Number'])
+    #context = {'chart': Chart}
+
+    response.append({
             'QUANTITY': hit.get('QUANTITY'),
             'RETAIL_DISC': hit.get('RETAIL_DISC'),
             'SUB_COMMODITY_DESC': hit.get('SUB_COMMODITY_DESC'),
             'COMMODITY_DESC': hit.get('COMMODITY_DESC'),
             'SALES_VALUE': hit.get('SALES_VALUE'),
             'DAY': hit.get('DAY'),
+            'WEEK_NO': hit.get('WEEK_NO'),
             'COUPON_MATCH_DISC': hit.get('COUPON_MATCH_DISC'),
             'COUPON_DISC': hit.get('COUPON_DISC'),
             'BASKET_ID': hit.get('BASKET_ID'),
             'STORE_ID': hit.get('STORE_ID'),
-            'TOTAL_SALES': Total_SALES_VALUE
+            'TOTAL_SALES': Total_SALES_VALUE,
+                'trend': Chart#context['chart']
         })
     #print Total_SALES_VALUE
     return render(request, 'purchases.html', {'response': response})

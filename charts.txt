@@ -1,0 +1,3 @@
+Fix Date in Weekly Visit Trend
+Pie Chart for Customer's product list
+Expenditure vs Income
