@@ -14,3 +14,9 @@ import matplotlib.pyplot as plt
 import pylab
 import json
 import requests
+
+
+
+def Supermarket_trend(request):
+
+    return render(request, 'SupermarketTrend.html')

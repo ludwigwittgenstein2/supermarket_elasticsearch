@@ -1,5 +1,12 @@
 from django.conf.urls import url
-from .views import plot, married,TopConsumers, TopProducts, Coupon,purchases, Supermarket_trend
+from .Coupon import Coupon
+from .TopProducts import TopProducts
+from .TopConsumers import TopConsumers
+from .married import married
+from .Supermarket_trend import Supermarket_trend
+from .plot import plot
+from .purchases import purchases
+
 
 urlpatterns = [
     #url(r'^([0-9]\d+^$', plot, name='plot')
