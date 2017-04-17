@@ -6,6 +6,8 @@ from .married import married
 from .Supermarket_trend import Supermarket_trend
 from .plot import plot
 from .purchases import purchases
+from .Categories import Categories
+from .TopCategories import TopCategories
 
 
 urlpatterns = [
@@ -16,5 +18,7 @@ urlpatterns = [
      url(r'^TopProducts$', TopProducts, name= 'TopProducts'),
      url(r'^Coupon$', Coupon, name= 'Coupon'),
      url(r'^consumers/(?P<house_id>\d+)', purchases, name= 'purchases'),
-     url(r'^trend$', Supermarket_trend, name= 'Supermarket_trend')
+     url(r'^trend$', Supermarket_trend, name= 'Supermarket_trend'),
+      url(r'^TopCategories$', TopCategories, name= 'TopCategories'),
+     url(r'^Categories$', Categories, name= 'Categories')
 ]

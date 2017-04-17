@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Consumer Income</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Top Categories of Product</h2>
+  <p>The following table shows the number of times, the products were bought</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+
+        <th>Rank</th>
+        <th>Product Code</th>
+        <th>Total times Bought</th>
+        <th>Commodity </th>
+        <th>Department</th>
+        <th>Brand</th>
+        <th> Department count </th>
+        <th> Chart </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for record in response_categories%}
+
+	<tr>
+        <td>{{record.Categories_rank}}</td>
+        <td>{{record.Categories_PRODUCT_ID}}</td>
+        <td>{{record.Categories_values}}</td>
+        <td>{{record.Categories_SUB_COMMODITY_DESC}}</td>
+        <td>{{record.Categories_DEPARTMENT}}</td>
+        <td>{{record.Categories_BRAND}}</td>
+
+        <td>{{record.DEPARTMENT_COUNT}}
+    </tr>
+
+
+
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

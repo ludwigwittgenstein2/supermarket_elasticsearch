@@ -34,18 +34,16 @@ def purchases(request, house_id):
             number[product['SUB_COMMODITY_DESC']] = int(hit['QUANTITY'])
         else:
             number[product['SUB_COMMODITY_DESC']] += int(hit['QUANTITY'])
-    Label = number.keys()
-    Sizes = number.values()
+        Label = number.keys()
+        Sizes = number.values()
 
-    xdata = ["Apple", "Apricot", "Avocado", "Banana", "Boysenberries", "Blueberries", "Dates", "Grapefruit", "Kiwi", "Lemon"]
-    ydata = [52, 48, 160, 94, 75, 71, 490, 82, 46, 17]
-    chartdata = {'x': Label[:5], 'y': Sizes[:5]}
-    charttype = "pieChart"
-    chartcontainer = 'piechart_container'
+        chartdata = {'x': Label[:5], 'y': Sizes[:5]}
+        charttype = "pieChart"
+        chartcontainer = 'piechart_container'
 
 
 
-    data = {
+        data = {
         'charttype': charttype,
         'chartdata': chartdata,
         'chartcontainer': chartcontainer,
@@ -59,13 +57,10 @@ def purchases(request, house_id):
             }
 
 
-    if hit.get('WEEK_NO') == hit.get('WEEK_NO'):
-        WEEK_SALES_VALUE += hit.get('SALES_VALUE')
-        Weekly_trend = ([(int(hit.get('WEEK_NO')),(WEEK_SALES_VALUE))])
 
 
 
-    response.append({
+        response.append({
             'QUANTITY': hit.get('QUANTITY'),
             'RETAIL_DISC': hit.get('RETAIL_DISC'),
             'SUB_COMMODITY_DESC': hit.get('SUB_COMMODITY_DESC'),

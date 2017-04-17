@@ -15,7 +15,7 @@ import json
 import requests
 
 
-def TopConsumers(request):
+def TopVisits(request):
 
     products = requests.post('http://localhost:9200/_sql',
                              data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 250 ').json()
