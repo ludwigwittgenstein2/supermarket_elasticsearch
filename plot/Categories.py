@@ -80,7 +80,7 @@ def Categories(request):
         else:
             number += 1
 
-    print Low
+    print Low, High, Medium
 
 
     response.append({
