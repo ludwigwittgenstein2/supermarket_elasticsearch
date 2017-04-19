@@ -3,6 +3,48 @@
 
 {% block body %}
 
+
+<div class="container">
+  <h2>Segments</h2>
+  <p>The following allows the user to access supermaket data for data analysis</p>
+  <table>
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+
+        <th>#1 </th>
+        <th>Times Visited</th>
+        <th>Consumers</th>
+        <th>Products</th>
+        <th>Coupon </th>
+        <th>Department</th>
+        <th>Brand</th>
+        <th> Chart </th>
+
+<tr>
+  <td> #2 </td>
+  <td><a class = "btn btn-success" href='/plot/trend'>Supermarket Visit Trend</a></td>
+  <td> <a class = 'btn btn-info'  href='/plot/TopConsumers'>Find Top Consumers</a> </td>
+  <td> <a class = 'btn btn-warning'  href='/plot/TopProducts'>Find Top Products</a></td>
+  <td> <a class = 'btn btn-primary'  href='/plot/Coupon'>Find Top Coupons </a></td>
+</tr>
+<tr>
+  <td> #3 </td>
+  <td>  <a class = 'btn btn-primary'  href='/plot'> Income Range </td>
+
+      </tr>
+    </thead>
+    <tbody>
+
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
 <div style="margin-top: 130px; margin-left: 30px;">
                 <a class = 'btn btn-default'  href='/z_score'>Z-Score
                 </a>

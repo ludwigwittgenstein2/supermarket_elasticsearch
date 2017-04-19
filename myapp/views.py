@@ -40,3 +40,7 @@ def list_all(request):
 def segment(request):
 
     return render( request, 'segment.html',{})
+
+def about(request):
+
+    return render( request, 'about.html',{})

@@ -89,4 +89,4 @@ def Categories(request):
         'Medium': Medium,
         })
 
-    return render(request, 'Categories.html',{'response': response})
+    return render(request, 'Categories.html')
