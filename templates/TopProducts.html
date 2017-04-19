@@ -18,18 +18,18 @@
 <div class="container">
   <h2>Most Spent Product Revenues</h2>
   <p>The following table shows the top products purchased</p>
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-bordered table-hover">
+    <thead class="d-inline-block bg-black">
       <tr>
 
 
         <th>Rank</th>
         <th>Product Code</th>
+        <th>Product Size </th>
         <th>Total Revenues</th>
-        <th>Commodity </th>
+        <th>Commodity Name</th>
         <th>Department</th>
         <th>Brand</th>
-        <th> Chart </th>
 
       </tr>
     </thead>
@@ -40,11 +40,12 @@
 	<tr>
         <td>{{record.rank}}</td>
         <td>{{record.PRODUCT_ID}}</td>
+        <td>{{record.PRODUCT_SIZE}}</td>
         <td>{{record.values}}</td>
         <td>{{record.SUB_COMMODITY_DESC}}</td>
         <td>{{record.DEPARTMENT}}</td>
         <td>{{record.BRAND}}</td>
-        <td>{{record.trend.as_html}}
+
     </tr>
 
 

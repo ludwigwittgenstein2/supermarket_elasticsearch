@@ -35,14 +35,17 @@ def TopProducts(request):
             rank += 1
             a = 0
             name = name_json['hits']['hits'][0]['_source']
+            CURR_SIZE_OF_PRODUCT = name['CURR_SIZE_OF_PRODUCT']
             if name['SUB_COMMODITY_DESC'] == name['SUB_COMMODITY_DESC']:
                 print name['SUB_COMMODITY_DESC']
+
 
 
 
             response.append({
                 'rank': rank,
                 'PRODUCT_ID': product_code,
+                'PRODUCT_SIZE': CURR_SIZE_OF_PRODUCT,
                 'values': value,
                 'SUB_COMMODITY_DESC': name['SUB_COMMODITY_DESC'],
                 'DEPARTMENT': name['DEPARTMENT'],
