@@ -105,6 +105,7 @@ def TopCategories(request):
             number += 1
 
 
+        print DEPARTMENT_COUNT
         data_Chart = list([DEPARTMENT_COUNT])
         data_source = (SimpleDataSource(data=data_Chart))
         chart = LineChart(data_source)
