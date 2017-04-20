@@ -8,6 +8,7 @@ from .plot import plot
 from .purchases import purchases
 from .Categories import Categories
 from .TopCategories import TopCategories
+from .D3 import D3
 
 
 urlpatterns = [
@@ -20,5 +21,6 @@ urlpatterns = [
      url(r'^consumers/(?P<house_id>\d+)', purchases, name= 'purchases'),
      url(r'^trend$', Supermarket_trend, name= 'Supermarket_trend'),
       url(r'^TopCategories$', TopCategories, name= 'TopCategories'),
-     url(r'^Categories$', Categories, name= 'Categories')
+     url(r'^Categories$', Categories, name= 'Categories'),
+      url(r'^D3$', D3, name= 'D3')
 ]
