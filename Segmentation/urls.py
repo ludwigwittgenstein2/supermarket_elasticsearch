@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^productAnalysis/',include('productAnalysis.urls')),
 
     #url(r'^$', RedirectView.as_view(url='/myapp/list/', permanent=True)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+print settings.STATIC_ROOT

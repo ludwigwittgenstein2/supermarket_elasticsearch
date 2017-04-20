@@ -75,7 +75,6 @@ TEMPLATES = [
     },
 ]
 WSGI_APPLICATION = 'Segmentation.wsgi.application'
-print TEMPLATES
 
 
 # Database
@@ -150,13 +149,13 @@ STATICFILES_FINDERS = (
 APPLICATION_DIR = os.path.dirname(globals()['__file__']) + '/../'
 
 
-
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.dirname(os.path.realpath(__file__))
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR), 'static', 'static_dirs'),
+    os.path.join(PROJECT_ROOT, 'static', 'static_dirs'),
 )
 
-print os.path.join(os.path.dirname(BASE_DIR), 'static', 'static_dirs')
+print STATIC_ROOT
 
 # Django-bower
 # ------------

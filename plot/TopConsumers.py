@@ -19,7 +19,6 @@ def TopConsumers(request):
 
     products = requests.post('http://localhost:9200/_sql',
                              data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 250 ').json()
-    # print 'name, quantity, value'
     response = []
     rank = 0
     for product in products['aggregations']['household_key']['buckets']:
@@ -39,7 +38,6 @@ def TopConsumers(request):
                 week_no = week['key']
                 times_visited = week['COUNT(*)']['value']
                 data_Trend.append([int(week_no), times_visited])
-            print (data_Trend)
 
             data_source = (SimpleDataSource(data=data_Trend))
 
@@ -49,7 +47,6 @@ def TopConsumers(request):
 
             L = (name['INCOME_DESC'])
             n = ''.join(i for i in L if i.isdigit())
-            print n
 
             response.append({
                 'rank': rank,
@@ -61,7 +58,7 @@ def TopConsumers(request):
                 'home': name['HOMEOWNER_DESC'],
                 'size': name['HOUSEHOLD_SIZE_DESC'],
                 'trend': context['chart']})
+ 
 
-    #print json.dumps(response)
-    print context['chart']
+
     return render(request, 'TopConsumers.html', {'response': response})

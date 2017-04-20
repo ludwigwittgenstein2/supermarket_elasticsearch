@@ -32,18 +32,13 @@ def TopProducts(request):
                                   data='SELECT * FROM products WHERE PRODUCT_ID = ' + str(product_code)).json()
     #   print name_json
         if len(name_json['hits']['hits']):
-            rank += 1
             a = 0
             name = name_json['hits']['hits'][0]['_source']
             CURR_SIZE_OF_PRODUCT = name['CURR_SIZE_OF_PRODUCT']
             if name['SUB_COMMODITY_DESC'] == name['SUB_COMMODITY_DESC']:
                 print name['SUB_COMMODITY_DESC']
 
-
-
-
             response.append({
-                'rank': rank,
                 'PRODUCT_ID': product_code,
                 'PRODUCT_SIZE': CURR_SIZE_OF_PRODUCT,
                 'values': value,
@@ -52,5 +47,16 @@ def TopProducts(request):
                 'BRAND': name['BRAND'],
             })
 
-    #print json.dumps(response)
-    return render(request, 'TopProducts.html', {'response': response})
+    final = []
+    done = []
+    for r in response:
+        if not r['SUB_COMMODITY_DESC'] in done:
+            rank += 1
+            r['rank'] = rank
+            final.append(r)
+            done.append(r['SUB_COMMODITY_DESC'])
+        else:
+            for _r in final:
+                if _r['SUB_COMMODITY_DESC'] == r['SUB_COMMODITY_DESC']:
+                    _r['values'] += r['values']
+    return render(request, 'TopProducts.html', {'response': final })
