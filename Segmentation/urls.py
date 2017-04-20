@@ -21,10 +21,12 @@ from django.views.generic import RedirectView
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^$',include('myapp.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^plot/', include('plot.urls')),
     url(r'^z_score/', include('z_score.urls')),
     url(r'^myapp/', include('myapp.urls')),
     url(r'^productAnalysis/',include('productAnalysis.urls')),
-    url(r'^$', RedirectView.as_view(url='/myapp/list/', permanent=True)),
+
+    #url(r'^$', RedirectView.as_view(url='/myapp/list/', permanent=True)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
