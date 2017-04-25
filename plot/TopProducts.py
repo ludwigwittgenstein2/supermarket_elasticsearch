@@ -49,6 +49,7 @@ def TopProducts(request):
 
     final = []
     done = []
+    list_values = []
     for r in response:
         if not r['SUB_COMMODITY_DESC'] in done:
             rank += 1
