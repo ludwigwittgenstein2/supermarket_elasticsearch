@@ -76,7 +76,7 @@ def TopConsumers(request):
                 'home': name['HOMEOWNER_DESC'],
                 'size': name['HOUSEHOLD_SIZE_DESC'],
                 'Visits': total_visits[quantity_times[0]],
-                'Average':total_visits[quantity_times[0]]/48,
+                'Average': total_visits[quantity_times[0]]/48,
                 'trend': context['chart']})
 
 
