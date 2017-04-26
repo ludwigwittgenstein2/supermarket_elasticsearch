@@ -13,7 +13,7 @@
     <!-- Site content goes here !-->
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"> </script>
 
-    <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart ct-perfect-first">
     <script>
     var data = {
   series: [5, 3, 4]
@@ -32,7 +32,7 @@ new Chartist.Pie('.ct-chart', data, {
 
 </script>
 
-
+</div>
 
 <div class="container">
   <h2>Most Spent Product Revenues</h2>
@@ -61,7 +61,6 @@ new Chartist.Pie('.ct-chart', data, {
         <td>{{record.SUB_COMMODITY_DESC}}</td>
         <td>{{record.DEPARTMENT}}</td>
         <td>{{record.BRAND}}</td>
-
     </tr>
 
     {%endfor%}

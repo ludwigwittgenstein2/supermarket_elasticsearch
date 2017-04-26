@@ -14,8 +14,13 @@ import pylab
 import json
 import requests
 
+household_total_visit = []
+
 
 def TopConsumers(request):
+    number_times = 0
+    quantity_times = {}
+    total_visits = {}
 
     products = requests.post('http://localhost:9200/_sql',
                              data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 250 ').json()
@@ -34,10 +39,20 @@ def TopConsumers(request):
             trend = requests.post('http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions WHERE household_key =  "'+ str(household_key) +'" GROUP BY WEEK_NO ORDER BY WEEK_NO').json()
             trend_weekly = trend['aggregations']
             data_Trend = [('WEEK_NO','Visits')]
+
             for week in trend_weekly['WEEK_NO']['buckets']:
                 week_no = week['key']
                 times_visited = week['COUNT(*)']['value']
                 data_Trend.append([int(week_no), times_visited])
+                quantity_times = [household_key, week_no, times_visited]
+                if quantity_times[0] not in total_visits:
+                    total_visits[quantity_times[0]] = quantity_times[2]
+                else:
+                    total_visits[quantity_times[0]] += quantity_times[2]
+
+
+
+
 
             data_source = (SimpleDataSource(data=data_Trend))
 
@@ -57,8 +72,10 @@ def TopConsumers(request):
                 'age': name['AGE_DESC'],
                 'home': name['HOMEOWNER_DESC'],
                 'size': name['HOUSEHOLD_SIZE_DESC'],
+                'Visits': total_visits[quantity_times[0]],
                 'trend': context['chart']})
- 
 
 
+
+    print total_visits
     return render(request, 'TopConsumers.html', {'response': response})
