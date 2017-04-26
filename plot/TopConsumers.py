@@ -21,6 +21,8 @@ def TopConsumers(request):
     number_times = 0
     quantity_times = {}
     total_visits = {}
+    average_visits = {},
+    Loyalty = {}
 
     products = requests.post('http://localhost:9200/_sql',
                              data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 250 ').json()
@@ -52,8 +54,6 @@ def TopConsumers(request):
 
 
 
-
-
             data_source = (SimpleDataSource(data=data_Trend))
 
             chart = LineChart(data_source, height= 190, width=560, labels=['Week Number', 'Number of Visits'])
@@ -62,6 +62,8 @@ def TopConsumers(request):
 
             L = (name['INCOME_DESC'])
             n = ''.join(i for i in L if i.isdigit())
+
+
 
             response.append({
                 'rank': rank,
@@ -73,6 +75,7 @@ def TopConsumers(request):
                 'home': name['HOMEOWNER_DESC'],
                 'size': name['HOUSEHOLD_SIZE_DESC'],
                 'Visits': total_visits[quantity_times[0]],
+                'Average':total_visits[quantity_times[0]]/48,
                 'trend': context['chart']})
 
 
