@@ -6,7 +6,7 @@
 <html>
   <head>
 
-    <title>Top Products</title>
+    <title>My first Chartist Tests</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
   </head>
   <body>
@@ -18,21 +18,19 @@
 
     var data = {
 
-  labels: {{Label|safe}},
   series: {{total}},
 
 };
-
 var options = {
-  width: 800,
-  height: 600
+  width: 300,
+  height: 200
 };
 
 
 var responsiveOptions = [
   ['screen and (min-width: 320px)', {
     chartPadding: 30,
-    labelOffset: 50,
+    labelOffset: 100,
     labelDirection: 'explode',
     labelInterpolationFnc: function(value) {
       return value;
@@ -45,6 +43,7 @@ var responsiveOptions = [
 ];
 
 var sum = function(a, b) { return a + b };
+
 
 new Chartist.Pie('.ct-chart', data, {
   labelInterpolationFnc: function(value) {

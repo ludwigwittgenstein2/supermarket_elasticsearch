@@ -19,15 +19,18 @@ import requests
 def TopProducts(request):
 
     products = requests.post(
-        'http://localhost:9200/_sql', data='SELECT sum(SALES_VALUE) FROM transactions group by PRODUCT_ID ORDER BY SUM(SALES_VALUE) DESC limit 200').json()
+        'http://localhost:9200/_sql', data='SELECT sum(SALES_VALUE) FROM transactions group by PRODUCT_ID ORDER BY SUM(SALES_VALUE) DESC limit 100').json()
 
     response = []
     rank = 0
+    product_total = []
+    label = []
 
     for product in products['aggregations']['PRODUCT_ID']['buckets']:
         product_code = product['key']
         quantity = product['doc_count']
         value = product['SUM(SALES_VALUE)']['value']
+        product_total.append(int(value))
         name_json = requests.post('http://localhost:9200/_sql',
                                   data='SELECT * FROM products WHERE PRODUCT_ID = ' + str(product_code)).json()
     #   print name_json
@@ -36,7 +39,8 @@ def TopProducts(request):
             name = name_json['hits']['hits'][0]['_source']
             CURR_SIZE_OF_PRODUCT = name['CURR_SIZE_OF_PRODUCT']
             if name['SUB_COMMODITY_DESC'] == name['SUB_COMMODITY_DESC']:
-                print name['SUB_COMMODITY_DESC']
+                json.dumps(label.append(name['SUB_COMMODITY_DESC']))
+
 
             response.append({
                 'PRODUCT_ID': product_code,
@@ -60,4 +64,5 @@ def TopProducts(request):
             for _r in final:
                 if _r['SUB_COMMODITY_DESC'] == r['SUB_COMMODITY_DESC']:
                     _r['values'] += r['values']
-    return render(request, 'TopProducts.html', {'response': final })
+    print label
+    return render(request, 'TopProducts.html', {'response': final, 'total': product_total, 'Label':'["'+'","'.join(label)+'"]' })

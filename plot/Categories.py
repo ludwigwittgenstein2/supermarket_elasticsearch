@@ -28,6 +28,7 @@ def Categories(request):
     global High
     global number
     response = []
+    count_product = {}
 
     #I need Low Income, Medium Income, High Income
     demographics = requests.post('http://localhost:9200/_sql',
@@ -38,20 +39,6 @@ def Categories(request):
 
     product = requests.post('http://localhost:9200/_sql',
                              data='SELECT * FROM products limit 10000').json()
-
-
-    for row in transactions['hits']['hits']:
-        transactions_PRODUCT_ID = row['_source']['PRODUCT_ID']
-        transactions_household_key = row['_source']['household_key']
-        transaction_dict[transactions_household_key] = transactions_PRODUCT_ID
-
-    for column in product['hits']['hits']:
-        product_PRODUCT_ID = column['_source']['PRODUCT_ID']
-        product_COMMODITY_DESC = column['_source']['COMMODITY_DESC']
-        product_DEPARTMENT = column['_source']['DEPARTMENT']
-        product_dict[product_PRODUCT_ID] = product_COMMODITY_DESC,product_DEPARTMENT
-
-
 
 
     for row in demographics['hits']['hits']:
@@ -80,7 +67,25 @@ def Categories(request):
         else:
             number += 1
 
-    print Low, High, Medium
+    for row in transactions['hits']['hits']:
+        transactions_PRODUCT_ID = row['_source']['PRODUCT_ID']
+        transactions_household_key = row['_source']['household_key']
+        transaction_dict[transactions_household_key] = transactions_PRODUCT_ID
+
+    for column in product['hits']['hits']:
+        product_PRODUCT_ID = column['_source']['PRODUCT_ID']
+        product_COMMODITY_DESC = column['_source']['COMMODITY_DESC']
+        product_DEPARTMENT = column['_source']['DEPARTMENT']
+        product_dict[product_PRODUCT_ID] = product_COMMODITY_DESC,product_DEPARTMENT
+
+    if product_DEPARTMENT not in count_product:
+        count_product[product_DEPARTMENT] = 1
+    else:
+        count_product[product_DEPARTMENT] += 1
+
+
+
+    print count_product, High, Medium
 
 
     response.append({
