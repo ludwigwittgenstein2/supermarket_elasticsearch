@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Consumer Income</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Coupons Redeemed</h2>
+  <p>The following table shows details about Coupons Redemeed</p>
+  <div class="bg-faded">Information about products redeemed by consumers
+  <table class="table table-bordered table-hover">
+    <thead class="d-inline-block bg-black">
+
+      <tr>
+        <th> Number </th>
+        <th>DAY</th>
+        <th>Household key</th>
+          <th>HOMEOWNER_DESC</th>
+            <th>INCOME_DESC</th>
+            <th>MARITAL_STATUS_CODE</th>
+                    <th>HH_COMP_DESC</th>
+        <th>COUPON_UPC</th>
+        <th>CURR_SIZE_OF_PRODUCT</th>
+        <th>PRODUCT_ID </th>
+        <th>BRAND </th>
+        <th>AGE_DESC</th>
+
+        <th>COMMODITY_DESC</th>
+        <th>SUB_COMMODITY_DESC</th>
+
+
+
+
+</span>
+      </tr>
+        </thead>
+        <tbody>
+
+    {% for record in response%}
+
+	<tr>
+        <td> {{record.RANK}}</td>
+        <td>{{record.DAY}}</td>
+        <td>{{record.household_key}}</td>
+              <td>{{record.INCOME_DESC}}</td>
+      <td>{{record.HOMEOWNER_DESC}}</td>
+        <td>{{record.MARITAL_STATUS_CODE}}</td>
+                <td>{{record.HH_COMP_DESC}}</td>
+                    <td>{{record.COUPON_UPC}}</td>
+
+
+        <td>{{record.CURR_SIZE_OF_PRODUCT}}</td></font>
+        <td>{{record.PRODUCT_ID}}</td></font>
+        <td>{{record.BRAND}}</td>
+        <td>{{record.AGE_DESC}}</td>
+
+        <td>{{record.COMMODITY_DESC}}</td>
+        <td>{{record.SUB_COMMODITY_DESC}}</td>
+
+
+
+
+
+
+
+
+    </tr>
+
+    {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+</body>
+</html>
+
+{% endblock %}
