@@ -10,6 +10,7 @@ from .Categories import Categories
 from .TopCategories import TopCategories
 from .CouponDetails import CouponDetails
 from .D3 import D3
+from .TopDepartment import TopDepartment
 
 
 urlpatterns = [
@@ -23,6 +24,7 @@ urlpatterns = [
      url(r'^trend$', Supermarket_trend, name= 'Supermarket_trend'),
       url(r'^TopCategories$', TopCategories, name= 'TopCategories'),
      url(r'^Categories$', Categories, name= 'Categories'),
+      url(r'^TopDepartment$', TopDepartment, name= 'TopDepartment'),
      url(r'^CouponDetails$',CouponDetails, name='CouponDetails'),
       url(r'^D3$', D3, name= 'D3')
 ]
