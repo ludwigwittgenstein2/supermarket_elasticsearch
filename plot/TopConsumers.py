@@ -56,7 +56,7 @@ def TopConsumers(request):
 
             data_source = (SimpleDataSource(data=data_Trend))
 
-            chart = LineChart(data_source, height= 190, width=560, labels=['Week Number', 'Number of Visits'])
+            chart = LineChart(data_source, height= 190, width=560, fields=['Week Number', 'Number of Visits'])
 
             context = {'chart': chart}
 

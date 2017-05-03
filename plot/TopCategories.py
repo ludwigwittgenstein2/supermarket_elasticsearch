@@ -23,6 +23,8 @@ def TopCategories(request):
 
     response_categories = []
     DEPARTMENT_COUNT = {}
+    quantity_times = {}
+    total_visits = {}
     rank = 0
     number = 1
 
@@ -36,6 +38,13 @@ def TopCategories(request):
         name = name_json['hits']['hits'][0]['_source']
         DEPARTMENT = name['DEPARTMENT']
         data_Chart = []
+
+        quantity_times = [name['SUB_COMMODITY_DESC'], quantity]
+
+        if quantity_times[0] not in total_visits:
+            total_visits[quantity_times[0]] = quantity_times[1]
+        else:
+            total_visits[quantity_times[0]] += quantity_times[1]
 
 
         if 'GROCERY' in name['DEPARTMENT']:
@@ -105,7 +114,6 @@ def TopCategories(request):
             number += 1
 
 
-        print DEPARTMENT_COUNT
         data_Chart = list([DEPARTMENT_COUNT])
         data_source = (SimpleDataSource(data=data_Chart))
         chart = LineChart(data_source)
@@ -123,4 +131,5 @@ def TopCategories(request):
 
     #print json.dumps(response)
     #print context['chart']
+    print total_visits
     return render(request, 'TopCategories.html', {'response_categories': response_categories})
