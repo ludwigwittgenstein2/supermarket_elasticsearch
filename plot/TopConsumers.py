@@ -26,7 +26,7 @@ def TopConsumers(request):
     Loyalty = {}
 
     products = requests.post('http://localhost:9200/_sql',
-                             data='SELECT SUM(SALES_VALUE) FROM transactions GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 50 ').json()
+                             data='SELECT SUM(SALES_VALUE) FROM transactions_new GROUP BY household_key ORDER BY SUM(SALES_VALUE) DESC LIMIT 50 ').json()
     response = []
     rank = 0
     for product in products['aggregations']['household_key']['buckets']:

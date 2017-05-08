@@ -19,7 +19,7 @@ import requests
 def TopProducts(request):
 
     products = requests.post(
-        'http://localhost:9200/_sql', data='SELECT sum(SALES_VALUE) FROM transactions group by PRODUCT_ID ORDER BY SUM(SALES_VALUE) DESC limit 10').json()
+        'http://localhost:9200/_sql', data='SELECT sum(SALES_VALUE) FROM transactions_new group by PRODUCT_ID ORDER BY SUM(SALES_VALUE) DESC limit 80').json()
 
 
     response = []

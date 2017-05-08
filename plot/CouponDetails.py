@@ -19,7 +19,7 @@ import requests
 def CouponDetails(request):
 
     coupon_redempt = requests.post(
-        'http://localhost:9200/_sql', data='SELECT * FROM master_data ORDER BY DAY').json()
+        'http://localhost:9200/_sql', data='SELECT * FROM master_data_new ORDER BY DAY').json()
 
     response = []
     RANK = 0

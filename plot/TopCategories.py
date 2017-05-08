@@ -19,7 +19,7 @@ import requests
 def TopCategories(request):
 
     transactions = requests.post(
-        'http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions GROUP BY PRODUCT_ID').json()
+        'http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions_new GROUP BY PRODUCT_ID').json()
 
     response_categories = []
     DEPARTMENT_COUNT = {}
