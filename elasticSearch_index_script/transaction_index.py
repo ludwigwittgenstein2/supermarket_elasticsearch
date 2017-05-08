@@ -8,12 +8,12 @@ import ast
 es = ES(host="localhost", port=9200)
 actions = []
 import csv
-reader = csv.DictReader(open("/Users/Rick/Desktop/CSV/transaction_data.csv", "r"))
+reader = csv.DictReader(open("/Users/Rick/Desktop/CSV/transaction_data2.csv", "r"))
 a = []
 from datetime import datetime
 c = 0
 for row in reader:
-    row['_index'] = 'transactions'
+    row['_index'] = 'transactions_new'
     row["_op_type"] = "index"
     row["_type"] =  'transactions'
     row['QUANTITY'] = float(row['QUANTITY'])

@@ -19,7 +19,7 @@ import requests
 def Coupon(request):
 
     coupon_redempt = requests.post(
-        'http://localhost:9200/_sql', data='SELECT count(*) FROM master_data group by PRODUCT_ID, SUB_COMMODITY_DESC, COMMODITY_DESC').json()
+        'http://localhost:9200/_sql', data='SELECT count(*) FROM master_data_new group by PRODUCT_ID, SUB_COMMODITY_DESC, COMMODITY_DESC').json()
 
     response = []
     RANK = 0
