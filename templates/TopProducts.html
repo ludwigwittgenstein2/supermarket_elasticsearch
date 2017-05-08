@@ -24,8 +24,11 @@
 };
 
 var options = {
-  width: 800,
-  height: 600
+  width: 400,
+  height: 400,
+  labelInterpolationFnc: function(lbl, idx) {
+    return  lbl + Math.round(data.series[idx]/data.series.reduce(sum) * 100) + '%';
+  }
 };
 
 
@@ -34,9 +37,7 @@ var responsiveOptions = [
     chartPadding: 30,
     labelOffset: 50,
     labelDirection: 'explode',
-    labelInterpolationFnc: function(value) {
-      return value;
-    }
+
   }],
   ['screen and (min-width: 320px)', {
     labelOffset: 80,
@@ -46,11 +47,7 @@ var responsiveOptions = [
 
 var sum = function(a, b) { return a + b };
 
-new Chartist.Pie('.ct-chart', data, {
-  labelInterpolationFnc: function(value) {
-    return Math.round(value / data.series.reduce(sum) * 100) + '%';
-  }
-},options);
+new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
 
 
 </script>

@@ -28,8 +28,9 @@ def Coupon(request):
         if len(redeemed):
             RANK += 1
             for sub_buck in redeemed['SUB_COMMODITY_DESC']['buckets'][0]['COMMODITY_DESC']['buckets']:
-
                 PRODUCT_ID = redeemed['key']
+                product_times = requests.post('http://localhost:9200/_sql', data='SELECT PRODUCT_ID, COUNT(*) FROM products WHERE PRODUCT_ID= "'+ str(PRODUCT_ID) +'"  GROUP BY SUB_COMMODITY_DESC').json()
+                print product_times
                 PRODUCT_NAME = redeemed['SUB_COMMODITY_DESC']['buckets'][0]['key']
                 PRODUCT_CATEGORY = sub_buck['key']
                 TIMES_RENEWED = sub_buck['doc_count']
