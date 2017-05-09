@@ -17,8 +17,8 @@
 <body>
 
 <div class="container">
-  <h2>Top Products by Units Purchased</h2>
-  <p>The following table shows the products bought based on units purchased</p>
+  <h2>We Increase Revenue by giving hypothetical price</h2>
+  <p>The following table shows the revenue of products based on price increase</p>
   <table class="table table-bordered table-hover">
     <thead class="d-inline-block bg-black">
       <tr>
@@ -30,7 +30,12 @@
         <th>Commodity </th>
         <th>Department</th>
         <th>Brand</th>
-    
+        <th>SAMPLE_PRICE</th>
+        <th>Sample_Price_Increase </th>
+        <th>SAMPLE REVENUE </th>
+        <th>SAMPLE REVENUE after Price Increase </th>
+        <th>Revenue_INCREASE </th>
+        <th>Percent_INCREASE </th>
 
       </tr>
     </thead>
@@ -45,7 +50,12 @@
         <td>{{record.Categories_SUB_COMMODITY_DESC}}</td>
         <td>{{record.Categories_DEPARTMENT}}</td>
         <td>{{record.Categories_BRAND}}</td>
-
+        <td>{{record.SAMPLE_PRICE}} </td>
+        <td>{{record.SAMPLE_PRICE_INCREASE}}</td>
+        <td>{{record.SAMPLE_REVENUE}}</td>
+        <td>{{record.SAMPLE_REVENUE_INCREASE}}</td>
+        <td>{{record.Revenue_INCREASE}}</td>
+        <td>{{record.Percent_INCREASE}}</td>
     </tr>
 
 

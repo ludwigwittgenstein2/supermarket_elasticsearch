@@ -16,15 +16,31 @@ import json
 import requests
 
 
-def TopDepartment(request):
+def TotalRevenues(request):
 
     transactions = requests.post(
-        'http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions GROUP BY PRODUCT_ID').json()
+        'http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions_new GROUP BY PRODUCT_ID').json()
+
+    total_revenues = requests.post('http://localhost:9200/_sql', data= 'SELECT SUM(SALES_VALUE) FROM transactions').json()
 
     response_categories = []
     DEPARTMENT_COUNT = {}
+    Sample_Price = 2
+    Sample_Price_Increase = 2.10
+    quantity_times = {}
+    total_visits = {}
     rank = 0
     number = 1
+    Sample_Revenue = 1
+    SAMPLE_REVENUE_INCREASE = 1
+    Revenue_INCREASE = 0
+    Percent_INCREASE = 1
+    Total = 1
+
+
+    for row in total_revenues['aggregations'].values():
+        Total = (row.values())
+
 
     for row in transactions['aggregations']['PRODUCT_ID']['buckets']:
         product_code = row['key']
@@ -32,10 +48,22 @@ def TopDepartment(request):
         name_json = requests.post('http://localhost:9200/_sql',
                                   data='SELECT * FROM products WHERE PRODUCT_ID = ' + str(product_code)).json()
 
-        rank += 1
+
         name = name_json['hits']['hits'][0]['_source']
         DEPARTMENT = name['DEPARTMENT']
         data_Chart = []
+        label = []
+
+        quantity_times = [name['SUB_COMMODITY_DESC'], quantity]
+
+        if name['SUB_COMMODITY_DESC'] == name['SUB_COMMODITY_DESC']:
+            json.dumps(label.append(name['SUB_COMMODITY_DESC']))
+
+
+        if quantity_times[0] not in total_visits:
+            total_visits[quantity_times[0]] = quantity_times[1]
+        else:
+            total_visits[quantity_times[0]] += quantity_times[1]
 
 
         if 'GROCERY' in name['DEPARTMENT']:
@@ -104,23 +132,50 @@ def TopDepartment(request):
         else:
             number += 1
 
-
-        print DEPARTMENT_COUNT
+        Sample_Revenue = float(quantity*Sample_Price)
+        SAMPLE_REVENUE_INCREASE = float(quantity*Sample_Price_Increase)
+        Revenue_INCREASE = (SAMPLE_REVENUE_INCREASE - Sample_Revenue)
+        Percent_INCREASE = (Revenue_INCREASE/Sample_Revenue)
         data_Chart = list([DEPARTMENT_COUNT])
         data_source = (SimpleDataSource(data=data_Chart))
         chart = LineChart(data_source)
         context = {'chart': chart}
 
         response_categories.append({
-                'Categories_rank': rank,
                 'Categories_PRODUCT_ID': product_code,
+                'Categories_rank':rank,
+                'Categories_SUB_COMMODITY_DESC':label,
                 'Categories_values': quantity,
                 'Categories_SUB_COMMODITY_DESC': name['SUB_COMMODITY_DESC'],
                 'Categories_DEPARTMENT': name['DEPARTMENT'],
                 'Categories_BRAND': name['BRAND'],
-                'DEPARTMENT_COUNT':context['chart'],
+                #'DEPARTMENT_COUNT':context['chart'],
+                'SAMPLE_PRICE':Sample_Price,
+                'SAMPLE_PRICE_INCREASE': float(Sample_Price_Increase),
+                'SAMPLE_REVENUE':Sample_Revenue,
+                'SAMPLE_REVENUE_INCREASE':SAMPLE_REVENUE_INCREASE,
+                'Revenue_INCREASE': Revenue_INCREASE,
+                'Percent_INCREASE':Percent_INCREASE,
+                'TotalRevenues': total_revenues,
+                'Total':(Total)
             })
 
     #print json.dumps(response)
     #print context['chart']
-    return render(request, 'TopDepartment.html', {'response_categories': response_categories})
+
+    final = []
+    done = []
+    list_values = []
+    for r in response_categories:
+        if not r['Categories_SUB_COMMODITY_DESC'] in done:
+            rank += 1
+            r['Categories_rank'] = rank
+            final.append(r)
+            done.append(r['Categories_SUB_COMMODITY_DESC'])
+        else:
+            for _r in final:
+                if _r['Categories_SUB_COMMODITY_DESC'] == r['Categories_SUB_COMMODITY_DESC']:
+                    _r['Categories_values'] += r['Categories_values']
+
+
+    return render(request, 'TotalRevenues.html', {'response_categories': response_categories, })

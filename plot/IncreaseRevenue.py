@@ -16,7 +16,7 @@ import json
 import requests
 
 
-def TopCategories(request):
+def IncreaseRevenue(request):
 
     transactions = requests.post(
         'http://localhost:9200/_sql', data='SELECT COUNT(*) FROM transactions_new GROUP BY PRODUCT_ID').json()
@@ -142,7 +142,12 @@ def TopCategories(request):
                 'Categories_DEPARTMENT': name['DEPARTMENT'],
                 'Categories_BRAND': name['BRAND'],
                 #'DEPARTMENT_COUNT':context['chart'],
-            
+                'SAMPLE_PRICE':Sample_Price,
+                'SAMPLE_PRICE_INCREASE': float(Sample_Price_Increase),
+                'SAMPLE_REVENUE':Sample_Revenue,
+                'SAMPLE_REVENUE_INCREASE':SAMPLE_REVENUE_INCREASE,
+                'Revenue_INCREASE': Revenue_INCREASE,
+                'Percent_INCREASE':Percent_INCREASE
             })
 
     #print json.dumps(response)
@@ -163,4 +168,4 @@ def TopCategories(request):
                     _r['Categories_values'] += r['Categories_values']
 
 
-    return render(request, 'TopCategories.html', {'response_categories': response_categories, })
+    return render(request, 'IncreaseRevenue.html', {'response_categories': response_categories, })

@@ -23,6 +23,7 @@ def CouponDetails(request):
 
     response = []
     RANK = 0
+    
 
     for redeemed in coupon_redempt['hits']['hits']:
         if len(redeemed):
