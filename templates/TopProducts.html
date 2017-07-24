@@ -14,43 +14,6 @@
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"> </script>
 
     <div class="ct-chart ct-perfect-first">
-    <script>
-
-    var data = {
-
-  labels: {{Label|safe}},
-  series: {{total}},
-
-};
-
-var options = {
-  width: 400,
-  height: 400,
-  labelInterpolationFnc: function(lbl, idx) {
-    return  lbl + Math.round(data.series[idx]/data.series.reduce(sum) * 100) + '%';
-  }
-};
-
-
-var responsiveOptions = [
-  ['screen and (min-width: 320px)', {
-    chartPadding: 30,
-    labelOffset: 50,
-    labelDirection: 'explode',
-
-  }],
-  ['screen and (min-width: 320px)', {
-    labelOffset: 80,
-    chartPadding: 20
-  }]
-];
-
-var sum = function(a, b) { return a + b };
-
-new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-
-
-</script>
 
 </div>
 

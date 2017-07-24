@@ -1,4 +1,5 @@
-# Supermarket
+# KODAI -- Software framework for Segmentation
+
 We build a Django prototype in Python to improve revenues for Supermarket data.
 
 Our Dataset has information about product details, purchases, demographics, coupons. Using this, our goal is to improve revenues by targeting Segments in the Dataset.
