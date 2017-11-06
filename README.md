@@ -209,6 +209,10 @@ DISPLAY -- Display location
 MAILER -- Mailer Location
 ```
 ---- 
+*RESULTS*:
+
+![alt text]()([https://github.com/ludwigwittgenstein2/supermarket\_elasticsearch/blob/master/static/results-screenshot/Kodai.png][3])
+
 
 
 
@@ -226,7 +230,8 @@ MAILER -- Mailer Location
 #### `v1.0.0`
 
 ## Contributors
-[Rick][2]
+[Rick][4]
 
 [1]:	https://www.dropbox.com/sh/lz522q4z2119vh2/AACtNhemZOf4EtCojHccSHBBa?dl=0
-[2]:	https://github.com/ludwigwittgenstein2
+[3]:	https://github.com/ludwigwittgenstein2/supermarket_elasticsearch/blob/master/static/results-screenshot/Kodai.png
+[4]:	https://github.com/ludwigwittgenstein2
