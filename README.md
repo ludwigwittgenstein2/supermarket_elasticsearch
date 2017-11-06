@@ -211,7 +211,8 @@ MAILER -- Mailer Location
 ---- 
 *RESULTS*:
 
-![alt text]()([https://supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
+![alt text]()([https://raw.githubusercontent.com/ludwigwittgenstein2 /supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
+
 
 
 
