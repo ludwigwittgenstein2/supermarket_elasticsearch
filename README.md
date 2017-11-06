@@ -1,7 +1,18 @@
-# KODAI -- Software Architecture and Implementation for Segmentation
-by Rick Rejeleene
+# KODAI -- Software Architecture and Implementation for Segmentation by Rick Rejeleene
 
-Preface:
+
+#### Preview:
+
+![alt text](static/results-screenshot/Kodai.png)
+Kodai - Web-application
+
+![alt text](static/results-screenshot/Top-Consumers.png)
+Kodai -- Retrieving Top Consumers from dataset
+
+
+
+
+#### Preface:
 
 We build a web-application, prototype in Python to test out revenue increase hypothesis in supermarket data.
 
@@ -9,7 +20,7 @@ Our Dataset has information about product details, purchases, demographics, coup
 
 We use dunnhumby's data for a Supermarket.
 
-Abstract:
+#### Abstract:
 
 The purpose of this thesis is to design and implement a software architecture for segmentation models to improve revenues for a supermarket. This tool supports analysis of supermarket products and generates results to interpret consumer behavior, to give businesses deeper insights into targeted consumer markets. The software design developed is named as Kodai. Kodai is horizontally reusable and can be adapted across various industries. This software framework allows testing a hypothesis to address the problem of increasing revenues in supermarkets. Kodai has several advantages, such as analyzing and visualizing data, and as a result, businesses can make better decisions. In addition to these advantages, Kodai is open-source, which means any developer can access the code, and develop into client requirements. With the described features, it is better than other similar tools such as Gephi, a free visualization and manipulation tool.
 
@@ -209,12 +220,15 @@ DISPLAY -- Display location
 MAILER -- Mailer Location
 ```
 ---- 
+<<<<<<< HEAD
 *RESULTS*:
 
 ![alt text]()([https://raw.githubusercontent.com/ludwigwittgenstein2 /supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
 
 
 
+=======
+>>>>>>> 567ad7d7d9b22a383340411ce1ff3873eb76ec9a
 
 
 
