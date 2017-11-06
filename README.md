@@ -1,6 +1,18 @@
 # KODAI -- Software Architecture and Implementation for Segmentation
 by Rick Rejeleene
 
+
+*RESULTS*:
+
+![alt text](static/results-screenshot/Kodai.png)
+Kodai - Web-application
+
+![alt text](static/results-screenshot/Top-Consumers.png)
+Kodai -- Retrieving Top Consumers from dataset
+
+
+
+
 Preface:
 
 We build a web-application, prototype in Python to test out revenue increase hypothesis in supermarket data.
@@ -209,11 +221,6 @@ DISPLAY -- Display location
 MAILER -- Mailer Location
 ```
 ---- 
-*RESULTS*:
-
-![alt text]()([https://supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
-
-
 
 
 
