@@ -211,7 +211,7 @@ MAILER -- Mailer Location
 ---- 
 *RESULTS*:
 
-![alt text]()([https://][3]raw.githubusercontent.com[/ludwigwittgenstein2/supermarket\_elasticsearch/blob/master/static/results-screenshot/Kodai.png][4])
+![alt text]()([https://supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
 
 
 
@@ -230,9 +230,8 @@ MAILER -- Mailer Location
 #### `v1.0.0`
 
 ## Contributors
-[Rick][5]
+[Rick][4]
 
 [1]:	https://www.dropbox.com/sh/lz522q4z2119vh2/AACtNhemZOf4EtCojHccSHBBa?dl=0
-[3]:	https://github.com/ludwigwittgenstein2/supermarket_elasticsearch/blob/master/static/results-screenshot/Kodai.png
-[4]:	https://github.com/ludwigwittgenstein2/supermarket_elasticsearch/blob/master/static/results-screenshot/Kodai.png
-[5]:	https://github.com/ludwigwittgenstein2
+[3]:	https://raw.githubusercontent.com/ludwigwittgenstein2/supermarket_elasticsearch/master/static/results-screenshot/Kodai.png
+[4]:	https://github.com/ludwigwittgenstein2
