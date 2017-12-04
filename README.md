@@ -1,5 +1,8 @@
 # KODAI -- Software Architecture and Implementation for Segmentation by Rick Rejeleene
 
+Wrote this software, for my M.S Dissertation.
+
+URL: digitalcommons.uri.edu/theses/1107/
 
 #### Preview:
 
@@ -30,7 +33,7 @@ Segmentation models provide qualitative and quantitative methods to improve serv
 
 This thesis explains the implementation of Kodai as a software architecture through segmentation models using a web-based application that implements software engineering methodology to improve revenues and consumer experience. This tool is developed to facilitate segmentation of consumer data based on purchase behavior with the goal of allowing the user to test a hypothesis to address the problem of increasing revenues in supermarkets. Most importantly, the software is reusable and can be adapted horizontally across various industries.
 
----- 
+----
 
 #### Data Set:
 
@@ -41,7 +44,7 @@ Below is the link for whole data-Set:
 * [CSV-Files]  (https://www.dropbox.com/sh/6lz05ehkt31x81j/AADxV\_STvuCwDujql3VwarGja?dl=0)
 * [YAML-FILES][1]
 
----- 
+----
 
 ## DATA TABLES:
 The following contains the structure of the Dataset, which we used for the whole prototype.
@@ -50,7 +53,7 @@ We use (a) to denote that a record is connected to another table.
 
 
 
----- 
+----
 ##### CAMPAIGN\_TABLE
 (1584 households mailed 30 Campaigns)
 
@@ -64,7 +67,7 @@ HOUSEHOLD_KEY -- Uniquely identifies each household
 DESCRIPTION -- Type of campaign(TypeA, TypeB or TypeC )
 ```
 
----- 
+----
 ##### CAMPAIGN\_DESC
 This table gives the length of time for which a campaign runs. So, any coupons received as part of a campaign are valid within the dates contained in this table.
 (30 Campaigns)
@@ -80,7 +83,7 @@ START_DAY -- Start Date of Campaign
 END_DAY -- End Date of Campaign
 ```
 
----- 
+----
 ##### COUPON\_REDEMPT
 (434 households redeemed 556 coupons from 30 Campaigns)
 
@@ -100,7 +103,7 @@ CAMPAIGN -- Uniquely identifies each campaign
 
 ```
 
----- 
+----
 ##### COUPON
 (1135 coupons promoted 44133 products for the 30 campaigns)
 
@@ -118,7 +121,7 @@ COUPON_UPC -- Uniquely identifies each coupon( unique to household and campaign)
 PRODUCT_ID -- Uniquely identifies each product
 
 ```
----- 
+----
 ##### HH\_DEMOGRAPHIC
 (801 household)
 This table contains demographic information for a portion of household.
@@ -143,7 +146,7 @@ HOUSEHOLD_SIZE_DESC -- Size of household up to 5+
 
 KID_CATEGORY_DESC -- Number of children present up to 3+
 ```
----- 
+----
 ##### TRANSACTION\_DATA.csv
 (2500 Households shopped 92339 products)
 
@@ -176,7 +179,7 @@ TRANS_TIME -- Time of day when transaction occurred
 WEEK_NO -- Week of transaction. Ranges 1 -102
 ```
 
----- 
+----
 ##### PRODUCT.csv
 (92353 products)
 
@@ -200,7 +203,7 @@ BRAND -- Indicates Private or National label brand
 CURR_SIZE_OF_PRODUCT -- Indicates package size
 ```
 
----- 
+----
 
 ##### CASUAL\_DATA
 (68377 products)
@@ -219,7 +222,7 @@ DISPLAY -- Display location
 
 MAILER -- Mailer Location
 ```
----- 
+----
 <<<<<<< HEAD
 *RESULTS*:
 
@@ -235,11 +238,11 @@ MAILER -- Mailer Location
 
 
 
----- 
+----
 
 
 \`\`\`
----- 
+----
 
 ## Release Notes
 #### `v1.0.0`
