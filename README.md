@@ -1,6 +1,6 @@
-# KODAI -- Software Architecture and Implementation for Segmentation by Rick Rejeleene
+# Kodai: A Software Architecture and Implementation for Segmentation by Rick Rejeleene
 
-Wrote this software, for my M.S Dissertation.
+This software was written for my M.S Dissertation in Computer Science.
 
 URL: digitalcommons.uri.edu/theses/1107/
 
