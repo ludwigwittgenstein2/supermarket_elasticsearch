@@ -3,20 +3,20 @@
 
 This software was written for my M.S dissertation in Computer Science.
 
-URL: [Dissertation!](digitalcommons.uri.edu/theses/1107/)
+URL: [Dissertation](digitalcommons.uri.edu/theses/1107/)
 
 
 #### Screenshots:
 
 ![alt text](static/results-screenshot/Kodai.png)
 
-Kodai - Web-application
+Figure 1: Kodai - Web-application
 
 <br>
 
 ![alt text](static/results-screenshot/Top-Consumers.png)
 
-Kodai -- Retrieving Top Consumers from dataset
+Figure 2: Kodai -- Retrieving Top Consumers from dataset
 
 
 
@@ -229,16 +229,6 @@ DISPLAY -- Display location
 MAILER -- Mailer Location
 ```
 ----
-=======
-
-
-
-
-
-
-
-----
-
 
 \`\`\`
 ----
