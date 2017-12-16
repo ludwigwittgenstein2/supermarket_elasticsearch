@@ -4,7 +4,7 @@
 
 This software was written for my M.S dissertation in Computer Science.
 
-URL: [Dissertation](digitalcommons.uri.edu/theses/1107/)
+URL: [link to Dissertation!](digitalcommons.uri.edu/theses/1107/)
 
 ----
 
