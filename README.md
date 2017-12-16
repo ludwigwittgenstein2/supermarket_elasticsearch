@@ -1,4 +1,4 @@
-# Kodai: A Software Architecture and Implementation for Segmentation
+## Kodai: A Software Architecture and Implementation for Segmentation
 ----
 #### by Rick Rejeleene
 
