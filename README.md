@@ -4,9 +4,8 @@
 
 This software was written for my M.S dissertation in Computer Science.
 
-URL: [link to Dissertation!](http://digitalcommons.uri.edu/theses/1107/)
+[link to Dissertation!](http://digitalcommons.uri.edu/theses/1107/)
 
-[link to Google!](http://google.com)
 ----
 
 #### Screenshots:
