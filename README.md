@@ -6,13 +6,13 @@ This software was written for my M.S dissertation in Computer Science.
 
 URL: [Dissertation](digitalcommons.uri.edu/theses/1107/)
 
-
+----
 #### Screenshots:
-
+----
 ![alt text](static/results-screenshot/Kodai.png)
 
 Figure 1: Kodai - Web-application
-
+----
 <br>
 
 ![alt text](static/results-screenshot/Top-Consumers.png)
