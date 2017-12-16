@@ -18,8 +18,6 @@ Figure 1: Kodai - Web-application
 Figure 2: Kodai -- Retrieving Top Consumers from dataset
 
 
-
-
 #### Preface:
 
 We build a web-application in Python to implement segmentation
@@ -227,9 +225,6 @@ DISPLAY -- Display location
 
 MAILER -- Mailer Location
 ```
-----
-
-\`\`\`
 ----
 
 ## Release Notes
