@@ -1,15 +1,21 @@
-# Kodai: A Software Architecture and Implementation for Segmentation by Rick Rejeleene
+# Kodai:
+## A Software Architecture and Implementation for Segmentation
+### by Rick Rejeleene
 
-This software was written for my M.S Dissertation in Computer Science.
+This software was written for my M.S dissertation in Computer Science.
 
-URL: digitalcommons.uri.edu/theses/1107/
+(URL: digitalcommons.uri.edu/theses/1107/)
 
-#### Preview:
+#### Screenshots:
 
 ![alt text](static/results-screenshot/Kodai.png)
+
 Kodai - Web-application
 
+
+
 ![alt text](static/results-screenshot/Top-Consumers.png)
+
 Kodai -- Retrieving Top Consumers from dataset
 
 
@@ -17,7 +23,8 @@ Kodai -- Retrieving Top Consumers from dataset
 
 #### Preface:
 
-We build a web-application, prototype in Python to test out revenue increase hypothesis in supermarket data.
+We build a web-application in Python to implement segmentation
+and revenue increase hypothesis in supermarket data.
 
 Our Dataset has information about product details, purchases, demographics, coupons. Using this, our goal is to improve revenues by targeting Segments in the Dataset.
 
@@ -27,11 +34,7 @@ We use dunnhumby's data for a Supermarket.
 
 The purpose of this thesis is to design and implement a software architecture for segmentation models to improve revenues for a supermarket. This tool supports analysis of supermarket products and generates results to interpret consumer behavior, to give businesses deeper insights into targeted consumer markets. The software design developed is named as Kodai. Kodai is horizontally reusable and can be adapted across various industries. This software framework allows testing a hypothesis to address the problem of increasing revenues in supermarkets. Kodai has several advantages, such as analyzing and visualizing data, and as a result, businesses can make better decisions. In addition to these advantages, Kodai is open-source, which means any developer can access the code, and develop into client requirements. With the described features, it is better than other similar tools such as Gephi, a free visualization and manipulation tool.
 
-The retail industry has grown exponentially, resulting in increasing demand for software tools to analyze consumer behavior. The analysis of consumer behavior helps businesses to stay at the forefront of market competition and provide excellent service. By focusing on consumer purchase behavior, Kodai can perform analyses, meaning it can classify consumers based on variables that capture their behavior. An example is identifying consumers who spend the most amount of money in a supermarket.
-
-Segmentation models provide qualitative and quantitative methods to improve service for the customer and revenues for the company. These models can be used in different fields such as finance, education and healthcare. Another important feature of Gephi is its interactive and visual modeling capabilities to help understand consumer behavior. Additionally, the software is reusable and supports the integration of future tools, following key extensibility concepts of software design.
-
-This thesis explains the implementation of Kodai as a software architecture through segmentation models using a web-based application that implements software engineering methodology to improve revenues and consumer experience. This tool is developed to facilitate segmentation of consumer data based on purchase behavior with the goal of allowing the user to test a hypothesis to address the problem of increasing revenues in supermarkets. Most importantly, the software is reusable and can be adapted horizontally across various industries.
+This tool is developed to facilitate segmentation of consumer data based on purchase behavior with the goal of allowing the user to test a hypothesis to address the problem of increasing revenues in supermarkets. Most importantly, the software is reusable and can be adapted horizontally across various industries.
 
 ----
 
@@ -41,7 +44,10 @@ This dataset contains household level transactions over two years from a group o
 
 Below is the link for whole data-Set:
 
-* [CSV-Files]  (https://www.dropbox.com/sh/6lz05ehkt31x81j/AADxV\_STvuCwDujql3VwarGja?dl=0)
+The Complete Journey
+
+* [CSV-Files] https://www.dunnhumby.com/sourcefiles
+
 * [YAML-FILES][1]
 
 ----
@@ -245,7 +251,7 @@ MAILER -- Mailer Location
 ----
 
 ## Release Notes
-#### `v1.0.0`
+#### `v1.0.1`
 
 ## Contributors
 [Rick][4]
