@@ -1,5 +1,4 @@
 ## Kodai: A Software Architecture and Implementation for Segmentation
-
 ----
 ####                                    by Rick Rejeleene
 
@@ -20,6 +19,7 @@ Figure 1: Kodai - Web-application
 
 Figure 2: Kodai -- Retrieving Top Consumers from dataset
 
+----
 
 #### Preface:
 
@@ -29,6 +29,8 @@ and revenue increase hypothesis in supermarket data.
 Our Dataset has information about product details, purchases, demographics, coupons. Using this, our goal is to improve revenues by targeting Segments in the Dataset.
 
 We use dunnhumby's data for a Supermarket.
+
+----
 
 #### Abstract:
 
