@@ -1,10 +1,10 @@
-# Kodai:
-## A Software Architecture and Implementation for Segmentation
-### by Rick Rejeleene
+# Kodai: ## A Software Architecture and Implementation for Segmentation
+                                    #### by Rick Rejeleene
 
 This software was written for my M.S dissertation in Computer Science.
 
-URL: [digitalcommons.uri.edu/theses/1107/!]
+URL: [Dissertation!](digitalcommons.uri.edu/theses/1107/)
+
 
 #### Screenshots:
 
@@ -12,7 +12,7 @@ URL: [digitalcommons.uri.edu/theses/1107/!]
 
 Kodai - Web-application
 
-
+<br>
 
 ![alt text](static/results-screenshot/Top-Consumers.png)
 
@@ -229,15 +229,8 @@ DISPLAY -- Display location
 MAILER -- Mailer Location
 ```
 ----
-<<<<<<< HEAD
-*RESULTS*:
-
-![alt text]()([https://raw.githubusercontent.com/ludwigwittgenstein2 /supermarket_elasticsearch/static/results-screenshot/Kodai.png][3])
-
-
-
 =======
->>>>>>> 567ad7d7d9b22a383340411ce1ff3873eb76ec9a
+
 
 
 
