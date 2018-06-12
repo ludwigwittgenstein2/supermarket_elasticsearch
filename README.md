@@ -2,7 +2,19 @@
 ----
 ####                                    by Rick Rejeleene
 
-This software was written for my M.S dissertation in Computer Science.
+Software  written for my M.S dissertation in Computer Science.
+
+
+My Problem Statement --
+
+I was given a random dataset on supermarket dataset. Using the dataset,
+help a small business to understand about their customers and a method to test revenue improvement.
+
+My questions were:
+
+a) How would I use Software Engineering, Business knowledge to solve this problem?
+
+
 
 [link to Dissertation!](http://digitalcommons.uri.edu/theses/1107/)
 
@@ -23,10 +35,12 @@ Figure 2: Kodai -- Retrieving Top Consumers from dataset
 
 #### Preface:
 
-We build a web-application in Python to implement segmentation
-and revenue increase hypothesis in supermarket data.
+Kodai is a web-application written in Django Framework using Python.
+We used a-priori method to implement segmentation in the dataset.
+Also, we tested a revenue increase hypothesis in supermarket data.
 
-Our Dataset has information about product details, purchases, demographics, coupons. Using this, our goal is to improve revenues by targeting Segments in the Dataset.
+Our Dataset had information about product details, purchases, demographics, coupons.
+Using this, our goal was to improve revenues by targeting segments in the dataset.
 
 We use dunnhumby's data for a Supermarket.
 
