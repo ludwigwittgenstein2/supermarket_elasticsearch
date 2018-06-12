@@ -2,15 +2,26 @@
 ----
 ####                                    by Rick Rejeleene
 
-Software  written for my M.S dissertation in Computer Science.
+This software was written for my M.S dissertation in Computer Science. I was immensely benefited
+by guidance of Dr. Joan Peckham, Dept. Chair of Computer Science
+and Statistics.
 
 
-My Problem Statement --
+#### My Problem Statement:
 
 I was given a random dataset on supermarket dataset. Using the dataset,
 help a small business to understand about their customers and a method to test revenue improvement.
 
-My questions were:
+Challenges:
+
+Large-Dataset
+Which tools to use to solve this problem?
+Apply Software Engineering Methods
+Time-Deadline
+
+
+
+My Immediate questions:
 
 a) How would I use Software Engineering, Business knowledge to solve this problem?
 
