@@ -14,10 +14,11 @@ help a small business to understand about their customers and a method to test r
 
 Challenges:
 
-Large-Dataset
-Which tools to use to solve this problem?
-Apply Software Engineering Methods
-Time-Deadline
+a) Large-Dataset
+b) Which tools to use to solve this problem?
+c) Apply Software Engineering Methods
+d) Time-Deadline
+e) No Knowledge of Marketing/Business
 
 
 
