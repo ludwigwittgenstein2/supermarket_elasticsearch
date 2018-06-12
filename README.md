@@ -24,7 +24,7 @@ e) No Knowledge of Marketing/Business
 
 My Immediate questions:
 
-a) How would I use Software Engineering, Business knowledge to solve this problem?
+a) How would I use Software Engineering to solve this problem?
 
 
 
